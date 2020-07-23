@@ -1,0 +1,33 @@
+E:\StatCheker\WpfApp1\WpfApp1\bin\Debug\Stat Checker by False God.exe.config
+E:\StatCheker\WpfApp1\WpfApp1\bin\Debug\Stat Checker by False God.exe
+E:\StatCheker\WpfApp1\WpfApp1\obj\Debug\StatChecker.csprojAssemblyReference.cache
+E:\StatCheker\WpfApp1\WpfApp1\obj\Debug\MainWindow.g.cs
+E:\StatCheker\WpfApp1\WpfApp1\obj\Debug\Window1.g.cs
+E:\StatCheker\WpfApp1\WpfApp1\obj\Debug\App.g.cs
+E:\StatCheker\WpfApp1\WpfApp1\obj\Debug\Stat Checker by False God_MarkupCompile.cache
+E:\StatCheker\WpfApp1\WpfApp1\obj\Debug\Stat Checker by False God_MarkupCompile.lref
+E:\StatCheker\WpfApp1\WpfApp1\obj\Debug\MainWindow.baml
+E:\StatCheker\WpfApp1\WpfApp1\obj\Debug\Window1.baml
+E:\StatCheker\WpfApp1\WpfApp1\obj\Debug\Stat Checker by False God.g.resources
+E:\StatCheker\WpfApp1\WpfApp1\obj\Debug\MainApp.Properties.Resources.resources
+E:\StatCheker\WpfApp1\WpfApp1\obj\Debug\StatChecker.csproj.GenerateResource.cache
+E:\StatCheker\WpfApp1\WpfApp1\obj\Debug\Stat Checker by False God.exe
+E:\StatCheker\WpfApp1\WpfApp1\obj\Debug\Stat Checker by False God.pdb
+E:\StatCheker\WpfApp1\WpfApp1\bin\Debug\Stat Checker by False God.pdb
+F:\StatCheker\WpfApp1\WpfApp1\obj\Debug\StatChecker.csprojAssemblyReference.cache
+F:\StatCheker\WpfApp1\WpfApp1\obj\Debug\MainWindow.g.cs
+F:\StatCheker\WpfApp1\WpfApp1\obj\Debug\Window1.g.cs
+F:\StatCheker\WpfApp1\WpfApp1\obj\Debug\App.g.cs
+F:\StatCheker\WpfApp1\WpfApp1\obj\Debug\Stat Checker by False God_MarkupCompile.cache
+F:\StatCheker\WpfApp1\WpfApp1\obj\Debug\Stat Checker by False God_MarkupCompile.lref
+F:\StatCheker\WpfApp1\WpfApp1\obj\Debug\Stat Checker by False God.exe
+F:\StatCheker\WpfApp1\WpfApp1\obj\Debug\Stat Checker by False God.pdb
+F:\StatCheker\WpfApp1\WpfApp1\bin\Debug\Stat Checker by False God.exe.config
+F:\StatCheker\WpfApp1\WpfApp1\bin\Debug\Stat Checker by False God.exe
+F:\StatCheker\WpfApp1\WpfApp1\bin\Debug\Stat Checker by False God.pdb
+F:\StatCheker\WpfApp1\WpfApp1\obj\Debug\MainWindow.baml
+F:\StatCheker\WpfApp1\WpfApp1\obj\Debug\Window1.baml
+F:\StatCheker\WpfApp1\WpfApp1\obj\Debug\Stat Checker by False God.g.resources
+F:\StatCheker\WpfApp1\WpfApp1\obj\Debug\MainApp.Properties.Resources.resources
+F:\StatCheker\WpfApp1\WpfApp1\obj\Debug\StatChecker.csproj.GenerateResource.cache
+F:\StatCheker\WpfApp1\WpfApp1\obj\Debug\StatChecker.csproj.CoreCompileInputs.cache
