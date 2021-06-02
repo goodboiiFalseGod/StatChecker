@@ -1,0 +1,78 @@
+Firelink Shrine:4002950
+Cemetery of Ash:4002951
+Judex Gundyr:4002952
+Untended Graves:4002953
+Champion Gundyr:4002954
+High Wall of Lothric:3002950
+Tower on the Wall:3002951
+Vordt of the Boreal Valley:3002952
+Dancer of the Boreal Valley:3002954
+Oceiros the Consumed King:3002951
+Foot of the High Wall:3102954
+Undead Settlement:3102950
+Cliff Underside:3102952
+Dilapidated Bridge:3102953
+Pit of Hollows:3102951
+Road of Sacrifices:3302956
+Halfway Fortress:3302950
+Crucifixion Woods:3302957
+Crystal Sage:3302952
+Farron Keep:3302953
+Keep Ruins:3302954
+Farron Keep Perimeter:3302958
+Old Wolf of Farron:3302955
+Abyss Watchers:3302951
+Cathedral of the Deep:3502953
+Cleansing Chapel:3502950
+Rosaria's Bed Chamber:3502952
+Deacons of the Deep:3502951
+Catacombs of Carthus:3802956
+High Lord Wolnir:3802950
+Abandoned Tomb:3802951
+Old King's Antechamber:3802952
+Demon Ruins:3802953
+Old Demon King:3802954
+Irithyll of the Boreal Valley:3702957
+Central Irithyll:3702954
+Church of Yorshka:3702950
+Distant Manor:3702955
+Pontiff Sulyvahn:3702951
+Water Reserve:3702956
+Anor Londo:3702953
+Prison Tower:3702958
+Aldrich, Devourer of Gods:3702952
+Irithyll Dungeon:3902950
+Profaned Capital:3902952
+Yhorm the Giant:3902951
+Lothric Castle:3012950
+Dragon Barracks:3012952
+Dragonslayer Armour:3012951
+Grand Archives:3412951
+Twin Princes:3412950
+Archdragon Peak:3202950
+Dragon-Kin Mausoleum:3202953
+Great Belfry:3202952
+Nameless King:3202951
+Flameless Shrine:4102950
+Kiln of the First Flame:4102951
+Soul of Cinder:4102952
+Snowfield:4502951
+Rope Bridge Cave:4502952
+Corvian Settlement:4502953
+Snowy Mountain Pass:4502954
+Ariandel Chapel:4502955
+Sister Friede:4502950
+Depths of the Painting:4502957
+Champion's Gravetender:4502956
+The Dreg Heap:5002951
+Earthen Peak Ruins:5002952
+Within the Earthen Peak Ruins:5002953
+The Demon Prince:5002950
+Mausoleum Lookout:5102952
+Ringed Inner Wall:5102953
+Ringed City Streets:5102954
+Shared Grave:5102955
+Church of Filianore:5102950
+Darkeater Midir:5102951
+Filianore's Rest:5112951
+Slave Knight Gael:5112950

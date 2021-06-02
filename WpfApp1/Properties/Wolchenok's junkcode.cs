@@ -9,7 +9,7 @@ namespace SoulsMemory
         {
             IntPtr address = BaseAddress;
 
-            for(int i = 0; i < Offsets.Length - 1; i++)
+            for (int i = 0; i < Offsets.Length - 1; i++)
             {
                 address = IntPtr.Add((IntPtr)Memory.ReadInt64(address), Offsets[i]);
                 address = new IntPtr(Memory.ReadInt64(address));
@@ -52,7 +52,6 @@ namespace SoulsMemory
 
         internal static IntPtr GetGameDataPtr()
         {
-
             var GetGameDataPtr_ = IntPtr.Add(Memory.BaseAddress, 0x4740178);
             GetGameDataPtr_ = new IntPtr(Memory.ReadInt64(GetGameDataPtr_));
             return GetGameDataPtr_;
@@ -163,14 +162,14 @@ namespace SoulsMemory
         {
             var buffer = new byte[]
             {
-                    0x48, 0xB8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                    0x48, 0x83, 0xEC, 0x48,
-                    0x48, 0x89, 0x44, 0x24, 0x30,
-                    0x48, 0x8D, 0x4C, 0x24, 0x30,
-                    0x49, 0xBE, 0x70, 0xBC, 0x75, 0x40, 0x01, 0x00, 0x00, 0x00,
-                    0x41, 0xFF, 0xD6,
-                    0x48, 0x83, 0xC4, 0x48,
-                    0xC3
+                0x48, 0xB8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                0x48, 0x83, 0xEC, 0x48,
+                0x48, 0x89, 0x44, 0x24, 0x30,
+                0x48, 0x8D, 0x4C, 0x24, 0x30,
+                0x49, 0xBE, 0x70, 0xBC, 0x75, 0x40, 0x01, 0x00, 0x00, 0x00,
+                0x41, 0xFF, 0xD6,
+                0x48, 0x83, 0xC4, 0x48,
+                0xC3
             };
 
             byte[] bytes = System.Text.Encoding.Unicode.GetBytes(Text);
@@ -182,44 +181,44 @@ namespace SoulsMemory
         {
             byte[] buffer =
             {
-                        0x48, 0xA1, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                        0x4d, 0x31, 0xc0,
-                        0x41, 0xfe, 0xc0,
-                        0x48, 0xbb, 0xb0, 0x3a, 0x74, 0x44, 0x01, 0x00, 0x00, 0x00,
-                        0x48, 0x8b, 0x0b,
-                        0x48, 0x8b, 0x89, 0x60, 0x0c, 0x00, 0x00,
-                        0x48, 0x8b, 0xd0,
-                        0x48, 0x83, 0xec, 0x28,
-                        0x49, 0xbe, 0x64, 0x2a, 0x68, 0x40, 0x01, 0x00, 0x00, 0x00,
-                        0x41, 0xff, 0xd6,
-                        0x48, 0x83, 0xc4, 0x28,
-                        0xc3
+                0x48, 0xA1, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                0x4d, 0x31, 0xc0,
+                0x41, 0xfe, 0xc0,
+                0x48, 0xbb, 0xb0, 0x3a, 0x74, 0x44, 0x01, 0x00, 0x00, 0x00,
+                0x48, 0x8b, 0x0b,
+                0x48, 0x8b, 0x89, 0x60, 0x0c, 0x00, 0x00,
+                0x48, 0x8b, 0xd0,
+                0x48, 0x83, 0xec, 0x28,
+                0x49, 0xbe, 0x64, 0x2a, 0x68, 0x40, 0x01, 0x00, 0x00, 0x00,
+                0x41, 0xff, 0xd6,
+                0x48, 0x83, 0xc4, 0x28,
+                0xc3
             };
 
             int[] maxhp = JunkCode.GetOnlinePlayersMaxHP();
             int playerhandle = 0x10068001;
 
-            if (PlayerSlot == 1 && maxhp[PlayerSlot - 1] != 0)
+            if (PlayerSlot == 1)
             {
                 playerhandle = 0x10068001;
             }
 
-            if (PlayerSlot == 2 && maxhp[PlayerSlot - 1] != 0)
+            if (PlayerSlot == 2)
             {
                 playerhandle = 0x10068002;
             }
 
-            if (PlayerSlot == 3 && maxhp[PlayerSlot - 1] != 0)
+            if (PlayerSlot == 3)
             {
                 playerhandle = 0x10068003;
             }
 
-            if (PlayerSlot == 4 && maxhp[PlayerSlot - 1] != 0)
+            if (PlayerSlot == 4)
             {
                 playerhandle = 0x10068004;
             }
 
-            if (PlayerSlot == 5 && maxhp[PlayerSlot - 1] != 0)
+            if (PlayerSlot == 5)
             {
                 playerhandle = 0x10068005;
                 //10068005
@@ -230,10 +229,10 @@ namespace SoulsMemory
             Memory.ExecuteBufferFunction(buffer, bytes);
         }
 
-        public static Vector3 BulletAhead(bool IsChrLocal, bool IsAngle, float Angle, Vector3 ChrLocal, double XOffsetPos, double ZOffsetPos, double Height)
+        public static Vector3 BulletAhead(bool IsChrLocal, bool IsAngle, float Angle, Vector3 ChrLocal,
+            double XOffsetPos, double ZOffsetPos, double Height)
 
         {
-            
             if (IsChrLocal)
             {
                 ChrLocal = SoulsMemory.CHR_INS.WorldChrMan.ChrBasicInfo.GetPosition();
@@ -241,7 +240,7 @@ namespace SoulsMemory
 
             if (IsAngle)
             {
-            Angle = SoulsMemory.CHR_INS.WorldChrMan.ChrBasicInfo.GetPosAngle();
+                Angle = SoulsMemory.CHR_INS.WorldChrMan.ChrBasicInfo.GetPosAngle();
             }
 
             double newXOffsetPos = Math.Cos(Angle) * XOffsetPos - Math.Sin(Angle) * -ZOffsetPos;
@@ -252,7 +251,6 @@ namespace SoulsMemory
             Vector3 NewBulletPos = new Vector3((float)XOffsetPos, ChrLocal.Y + (float)Height, (float)ZOffsetPos);
 
             return NewBulletPos;
-
         }
 
         public static int GetPlayerHandle()
@@ -264,7 +262,6 @@ namespace SoulsMemory
             return Memory.ReadInt32(Adress);
         }
 
-     
         public static Vector3[] GetOnlinePlayersPositions()
         {
             int[] PlayersOffsets = { 0x38, 0x70, 0xA8, 0xE0, 0x118 };
@@ -283,7 +280,8 @@ namespace SoulsMemory
                 var AdressPosY = IntPtr.Add(Adress, 0x84);
                 var AdressPosZ = IntPtr.Add(Adress, 0x88);
 
-                Positions[i] = new Vector3(Memory.ReadFloat(AdressPosX), Memory.ReadFloat(AdressPosY), Memory.ReadFloat(AdressPosZ));
+                Positions[i] = new Vector3(Memory.ReadFloat(AdressPosX), Memory.ReadFloat(AdressPosY),
+                    Memory.ReadFloat(AdressPosZ));
             }
 
             return Positions;
@@ -292,21 +290,22 @@ namespace SoulsMemory
         public static Vector3 GetOnlinePlayersPositions(int i)
         {
             int[] PlayersOffsets = { 0x38, 0x70, 0xA8, 0xE0, 0x118 };
-            Vector3 Positions = new Vector3(0,0,0);
+            Vector3 Positions = new Vector3(0, 0, 0);
 
-                var Adress = IntPtr.Add((IntPtr)Memory.ReadInt64(BaseB()), 0x40);
-                Adress = new IntPtr(Memory.ReadInt64(Adress));
-                Adress = IntPtr.Add(Adress, PlayersOffsets[i]);
-                Adress = new IntPtr(Memory.ReadInt64(Adress));
-                Adress = IntPtr.Add(Adress, 0x18);
-                Adress = new IntPtr(Memory.ReadInt64(Adress));
-                Adress = IntPtr.Add(Adress, 0x28);
-                Adress = new IntPtr(Memory.ReadInt64(Adress));
-                var AdressPosX = IntPtr.Add(Adress, 0x80);
-                var AdressPosY = IntPtr.Add(Adress, 0x84);
-                var AdressPosZ = IntPtr.Add(Adress, 0x88);
+            var Adress = IntPtr.Add((IntPtr)Memory.ReadInt64(BaseB()), 0x40);
+            Adress = new IntPtr(Memory.ReadInt64(Adress));
+            Adress = IntPtr.Add(Adress, PlayersOffsets[i]);
+            Adress = new IntPtr(Memory.ReadInt64(Adress));
+            Adress = IntPtr.Add(Adress, 0x18);
+            Adress = new IntPtr(Memory.ReadInt64(Adress));
+            Adress = IntPtr.Add(Adress, 0x28);
+            Adress = new IntPtr(Memory.ReadInt64(Adress));
+            var AdressPosX = IntPtr.Add(Adress, 0x80);
+            var AdressPosY = IntPtr.Add(Adress, 0x84);
+            var AdressPosZ = IntPtr.Add(Adress, 0x88);
 
-                Positions = new Vector3(Memory.ReadFloat(AdressPosX), Memory.ReadFloat(AdressPosY), Memory.ReadFloat(AdressPosZ));
+            Positions = new Vector3(Memory.ReadFloat(AdressPosX), Memory.ReadFloat(AdressPosY),
+                Memory.ReadFloat(AdressPosZ));
 
 
             return Positions;
@@ -394,13 +393,11 @@ namespace SoulsMemory
             return Names;
         }
 
-
-
         public static int[,] GetOnlinePlayersWeapons()
         {
             int[] PlayersOffsets = { 0x38, 0x70, 0xA8, 0xE0, 0x118 };
             int[] WeaponSlotsOffsets = { 0x330, 0x338, 0x340, 0x32C, 0x334, 0x33C };
-            var Weapons = new int[5 , 6];
+            var Weapons = new int[5, 6];
             for (int i = 0; i < PlayersOffsets.Length; i++)
             {
                 var Adress = IntPtr.Add((IntPtr)Memory.ReadInt64(BaseB()), 0x40);
@@ -410,9 +407,9 @@ namespace SoulsMemory
                 Adress = IntPtr.Add(Adress, 0x1FA0);
                 Adress = new IntPtr(Memory.ReadInt64(Adress));
                 for (int Slot = 0; Slot < WeaponSlotsOffsets.Length; Slot++)
-                {   
+                {
                     var LastAdress = IntPtr.Add(Adress, WeaponSlotsOffsets[Slot]);
-                    Weapons[i , Slot] = Memory.ReadInt32(LastAdress);
+                    Weapons[i, Slot] = Memory.ReadInt32(LastAdress);
                 }
             }
 
@@ -467,7 +464,8 @@ namespace SoulsMemory
 
         public static int[] GetAllWeaponVariations(int WeaponId)
         {
-            int[] WeaponInfusions = { 0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500 };
+            int[] WeaponInfusions =
+                {0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500};
             int[] WeaponReinforces = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             var Weapons = new int[WeaponReinforces.Length * WeaponInfusions.Length];
             int BufferWeaponId = WeaponId;
@@ -488,7 +486,8 @@ namespace SoulsMemory
             return Weapons;
         }
 
-        public static void GetBasicWeaponInfusionReinforce(int WeaponId, out int WeaponBase, out int WeaponReinforce, out int WeaponInfusion)
+        public static void GetBasicWeaponInfusionReinforce(int WeaponId, out int WeaponBase, out int WeaponReinforce,
+            out int WeaponInfusion)
         {
             WeaponBase = (WeaponId / 10000) * 10000;
             WeaponReinforce = WeaponId % 100;
@@ -500,6 +499,7 @@ namespace SoulsMemory
             WeaponBase = (WeaponId / 100) * 100;
             WeaponReinforce = WeaponId % 100;
         }
+
         public static int GetPlayerMaxHp()
         {
             int Health = 0;
@@ -615,15 +615,15 @@ namespace SoulsMemory
             int[] PlayersOffsets = { 0x38, 0x70, 0xA8, 0xE0, 0x118 };
             int Health;
 
-                var Adress = IntPtr.Add((IntPtr)Memory.ReadInt64(BaseB()), 0x40);
-                Adress = new IntPtr(Memory.ReadInt64(Adress));
-                Adress = IntPtr.Add(Adress, PlayersOffsets[i]);
-                Adress = new IntPtr(Memory.ReadInt64(Adress));
-                Adress = IntPtr.Add(Adress, 0x1FA0);
-                Adress = new IntPtr(Memory.ReadInt64(Adress));
-                Adress = IntPtr.Add(Adress, 0x18);
+            var Adress = IntPtr.Add((IntPtr)Memory.ReadInt64(BaseB()), 0x40);
+            Adress = new IntPtr(Memory.ReadInt64(Adress));
+            Adress = IntPtr.Add(Adress, PlayersOffsets[i]);
+            Adress = new IntPtr(Memory.ReadInt64(Adress));
+            Adress = IntPtr.Add(Adress, 0x1FA0);
+            Adress = new IntPtr(Memory.ReadInt64(Adress));
+            Adress = IntPtr.Add(Adress, 0x18);
 
-                Health = Memory.ReadInt32(Adress);
+            Health = Memory.ReadInt32(Adress);
 
             return Health;
         }
@@ -653,57 +653,44 @@ namespace SoulsMemory
 
         public static bool[] StatChecker(int[,] PlayersStats, int[] PlayersSl)
         {
-            bool[] IsStatsMatch = new bool[5];
-            //int[,] PlayerRings = GetOnlinePlayersRings();            
-            for (int i = 0; i < 5; i++)
+            //todo: aaaa
+            var IsStatsMatch = new bool[5];
+            for (var i = 0; i < 5; i++)
             {
-                int StatsSumm = -89;
-                int Lvl = 0;
-
+                var StatsSumm = -89; //Типа у всех изначально сумма равна 89 + уровень (1) = 90
                 IsStatsMatch[i] = true;
 
                 if (PlayersSl[i] < 1 || PlayersSl[i] > 802) //SoulLvL
-                   IsStatsMatch[i] = false;
-
-                if (PlayersStats[i, 0] < 9 || PlayersStats[i, 0] > 99) //Vgr
-                    IsStatsMatch[i] = false;
-
-                if (PlayersStats[i, 1] < 6 || PlayersStats[i, 0] > 99) //Att
-                    IsStatsMatch[i] = false;
-
-                if (PlayersStats[i, 2] < 9 || PlayersStats[i, 0] > 99) //End
-                    IsStatsMatch[i] = false;
-
-                if (PlayersStats[i, 3] < 7 || PlayersStats[i, 0] > 99) //Vit
-                    IsStatsMatch[i] = false;
-
-                if (PlayersStats[i, 4] < 7 || PlayersStats[i, 0] > 99) //Str
-                    IsStatsMatch[i] = false;
-
-                if (PlayersStats[i, 5] < 8 || PlayersStats[i, 0] > 99) //Dex
-                    IsStatsMatch[i] = false;
-
-                if (PlayersStats[i, 6] < 7 || PlayersStats[i, 0] > 99) //Int
-                    IsStatsMatch[i] = false;
-
-                if (PlayersStats[i, 7] < 7 || PlayersStats[i, 0] > 99) //Fth
-                    IsStatsMatch[i] = false;
-
-                if (PlayersStats[i, 8] < 7 || PlayersStats[i, 0] > 99) //Luck
-                    IsStatsMatch[i] = false;
-
-                if (IsStatsMatch[i])
                 {
-                    for (int j = 0; j < 9; j++)
+                    IsStatsMatch[i] = false;
+                    continue;
+                }
+
+                /*
+                 * Не знаю, нахуя, но раз надо, то проверим все в отдельности
+                 * 0 - vigor
+                 * 1 - atttt
+                 * 2 - end
+                 * 3 - bitt
+                 * 4 - str
+                 * 5 - dex
+                 * 6 - int
+                 * 7 - fth
+                 * 8 - luck
+                 */
+                var minLevels = new int[] { 9, 6, 9, 7, 7, 8, 7, 7, 7 };
+                for (var j = 0; j < 9; j++)
+                {
+                    if (PlayersStats[i, j] >= minLevels[j] && PlayersStats[i, j] <= 99) StatsSumm += PlayersStats[i, j];
+                    else
                     {
-                        StatsSumm = StatsSumm + PlayersStats[i, j];
+                        IsStatsMatch[i] = false;
+                        break;
                     }
                 }
 
-
-                    if (PlayersSl[i] != StatsSumm)
-                        IsStatsMatch[i] = false;
-
+                if (IsStatsMatch[i] && PlayersSl[i] != StatsSumm) // Оп, фактический больше нарисованного 
+                    IsStatsMatch[i] = false;
             }
 
             return IsStatsMatch;
@@ -711,7 +698,6 @@ namespace SoulsMemory
 
         public static double SaveParam(int SpParamOffset, int ObjectOffset, int ParamOffset, string ValueType)
         {
-
             {
                 double ParamValue = 0;
                 var Adress = IntPtr.Add((IntPtr)Memory.ReadInt64(Param()), SpParamOffset);
@@ -750,9 +736,9 @@ namespace SoulsMemory
             Double = 4
         }
 
-        public static void WriteParam( int SpParamOffset, int ObjectOffset, int ParamOffset, ValueType valueType, double Value )
+        public static void WriteParam(int SpParamOffset, int ObjectOffset, int ParamOffset, ValueType valueType,
+            double Value)
         {
-            
             {
                 var Adress = IntPtr.Add((IntPtr)Memory.ReadInt64(Param()), SpParamOffset);
                 Adress = new IntPtr(Memory.ReadInt64(Adress));
@@ -776,7 +762,14 @@ namespace SoulsMemory
 
                 if (valueType == ValueType.Double)
                     Memory.WriteDouble(Adress, Value);
-            }            
+            }
+        }
+
+        public static string GetLastBonfire()
+        {
+            var Adress = IntPtr.Add((IntPtr)Memory.ReadInt64(BaseC()), 0xACC);
+            var BonfireID = Memory.ReadInt32(Adress);
+            return BonfireID.ToString();
         }
 
         public static void SetLastBonfire(int BonfireID)
@@ -786,90 +779,15 @@ namespace SoulsMemory
             Memory.WriteInt32(Adress, BonfireID);
         }
 
-
-        public static bool[] StatChecker()
-        {
-            bool[] IsStatsMatch = new bool[5];
-            int[,] PlayersStats = GetOnlinePlayersStats();
-            int[,] PlayerRings = GetOnlinePlayersRings();
-            int[] PlayersSl = GetOnlinePlayersLvl();
-            for (int i = 0; i < 5; i++)
-            {
-                int StatsSumm = -89;
-                int Lvl = 0;
-
-                IsStatsMatch[i] = true;
-
-                if (PlayersSl[i] < 1 || PlayersSl[i] > 802) //SoulLvL
-                    IsStatsMatch[i] = false;
-
-                if (PlayersStats[i, 0] < 9 || PlayersStats[i, 0] > 99) //Vgr
-                    IsStatsMatch[i] = false;
-
-                if (PlayersStats[i, 1] < 6 || PlayersStats[i, 0] > 99) //Att
-                    IsStatsMatch[i] = false;
-
-                if (PlayersStats[i, 2] < 9 || PlayersStats[i, 0] > 99) //End
-                    IsStatsMatch[i] = false;
-
-                if (PlayersStats[i, 3] < 7 || PlayersStats[i, 0] > 99) //Vit
-                    IsStatsMatch[i] = false;
-
-                if (PlayersStats[i, 4] < 7 || PlayersStats[i, 0] > 99) //Str
-                    IsStatsMatch[i] = false;
-
-                if (PlayersStats[i, 5] < 8 || PlayersStats[i, 0] > 99) //Dex
-                    IsStatsMatch[i] = false;
-
-                if (PlayersStats[i, 6] < 7 || PlayersStats[i, 0] > 99) //Int
-                    IsStatsMatch[i] = false;
-
-                if (PlayersStats[i, 7] < 7 || PlayersStats[i, 0] > 99) //Fth
-                    IsStatsMatch[i] = false;
-
-                if (PlayersStats[i, 8] < 7 || PlayersStats[i, 0] > 99) //Luck
-                    IsStatsMatch[i] = false;
-
-                if (IsStatsMatch[i])
-                {
-                    for (int j = 0; j < 9; j++)
-                    {
-                        StatsSumm = StatsSumm + PlayersStats[i, j];
-                        /*for (int k = 0; k < 4; k++)
-                        {
-                            //Rings
-                            if (PlayerRings[i, k] == 1 || PlayerRings[i, k] == 2 || PlayerRings[i, k] == 3 || PlayerRings[i, k] == 4)
-                            {
-                                Lvl -= 5;
-                            }
-                            else if (PlayerRings[i, k] == 5)
-                            {
-                                Lvl -= 15;
-                            }
-                        }*/
-                    }
-                }
-
-                if (PlayersSl[i] != StatsSumm)
-                    IsStatsMatch[i] = false;
-
-            }
-
-            return IsStatsMatch;
-        }
-
         public static int RealSl(int[,] PlayersStats, int playerNo)
         {
             int StatsSumm = -89;
             int Lvl = 0;
 
-            for (int i = 0; i < 9; i++)
-            {
-                StatsSumm = StatsSumm + PlayersStats[playerNo, i];
-            }
+            for (var i = 0; i < 9; i++)
+                StatsSumm += PlayersStats[playerNo, i];
 
             Lvl = StatsSumm;
-
             return Lvl;
         }
 
@@ -923,9 +841,8 @@ namespace SoulsMemory
                 }
 
 
-                if (PlayersSl[i] == StatsSumm + 1 || PlayersSl[i] == StatsSumm -1)
+                if (PlayersSl[i] == StatsSumm + 1 || PlayersSl[i] == StatsSumm - 1)
                     IsStatsMatch[i] = false;
-
             }
 
             return IsStatsMatch;
@@ -1166,7 +1083,6 @@ namespace SoulsMemory
 
         public static void WriteReversPlayerNo(int PlayerNo)
         {
-
             var Adress = IntPtr.Add((IntPtr)Memory.ReadInt64(BaseA()), 0x10);
             Adress = new IntPtr(Memory.ReadInt64(Adress));
             Adress = IntPtr.Add(Adress, 0x10);
@@ -1176,7 +1092,6 @@ namespace SoulsMemory
 
         public static void WriteForwardPlayerNo(int PlayerNo)
         {
-
             var Adress = IntPtr.Add((IntPtr)Memory.ReadInt64(BaseB()), 0x80);
             Adress = new IntPtr(Memory.ReadInt64(Adress));
             Adress = IntPtr.Add(Adress, 0x78);
@@ -1201,7 +1116,7 @@ namespace SoulsMemory
             BulletParam = new IntPtr(Memory.ReadInt64(BulletParam));
             BulletParam = IntPtr.Add(BulletParam, 0x68);
             BulletParam = new IntPtr(Memory.ReadInt64(BulletParam));
-            BulletParam = IntPtr.Add(BulletParam, Offset);//Адрес буллета
+            BulletParam = IntPtr.Add(BulletParam, Offset); //Адрес буллета
 
             return BulletParam;
         }
@@ -1232,7 +1147,5 @@ namespace SoulsMemory
             var PlayersCount = IntPtr.Add((IntPtr)Memory.ReadInt64(BaseC()), 0xD3C);
             return Memory.ReadInt32(PlayersCount);
         }
-    }   
-
-
+    }
 }

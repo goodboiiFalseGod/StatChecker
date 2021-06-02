@@ -7,7 +7,7 @@
     <ProjectGuid>{D2059007-7A12-453B-AE4C-6FD4022FFD83}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>MainApp</RootNamespace>
-    <AssemblyName>Stat Checker by False God</AssemblyName>
+    <AssemblyName>Bourne Again Stat Checker</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -63,6 +63,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Crutches\Bonfires.cs" />
+    <Compile Include="Crutches\Bonfires.xaml.cs">
+      <DependentUpon>Bonfires.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\TextReader.cs" />
     <Compile Include="Properties\ItemNamer.cs" />
     <Compile Include="Properties\GAME REND.cs" />
@@ -75,9 +79,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\Wolchenok%27s junkcode.cs" />
-    <Compile Include="Window1.xaml.cs">
-      <DependentUpon>Window1.xaml</DependentUpon>
-    </Compile>
+    <Page Include="Crutches\Bonfires.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -90,10 +95,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Window1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -115,6 +116,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Resources\OptimusPrinceps.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -122,11 +124,57 @@
   <ItemGroup>
     <None Include="Properties\Sound_18603.wav" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="1e2686a55a947e06.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\bonfires.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\pics\bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\pics\tile_covs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\pics\tile_marauder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\pics\tile_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\pics\tile_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\pics\tile-host.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\pics\buttons\blackcrystal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\pics\buttons\ember.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\pics\buttons\fingers.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\pics\buttons\redeye.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\pics\buttons\redsoapstone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\pics\buttons\tears.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\pics\buttons\tearsofdenial.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\pics\buttons\whitesoapstone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\pics\buttons\seed.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
