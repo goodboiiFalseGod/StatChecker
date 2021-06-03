@@ -1,26 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using SoulsMemory;
-using System.Reflection;
-using System.ComponentModel;
-using System.Runtime.InteropServices;
 using System.Numerics;
 using System.IO;
-using System.Speech.Synthesis;
-using System.Text.RegularExpressions;
 using MainApp.Crutches;
 
 namespace MainApp
@@ -79,10 +65,6 @@ namespace MainApp
         {
             this.bonfireListBox.Navigate(new Uri("/Crutches/Bonfires.xaml", UriKind.Relative));
         }
-        //        <Button HorizontalAlignment = "Center"  Click="HardKickButton_Click1" Margin="5">
-        //    <TextBlock Text = "HardKicklPlayer" FontSize="20" Name="HardKickPlayer5"/>
-        //</Button>
-
         private void KillPlayer(int PlayerNo)
         {
             int PlayerHandle = JunkCode.GetPlayerHandle();
@@ -100,35 +82,6 @@ namespace MainApp
         {
             JunkCode.DisconnectFunc(Int32.Parse((sender as Button).Tag.ToString()));
         }
-
-
-        /*            <WrapPanel Margin="0,7">
-                <TextBlock Text="Visibility" FontSize="20"/>
-                <CheckBox x:Name="VisibilityOfKill" RenderTransformOrigin="0.5,0.5" Checked="VisibilityOfKill_Checked" Unchecked="VisibilityOfKill_Unchecked">
-                    <CheckBox.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform Y="10" X="30"/>
-                        </TransformGroup>
-                    </CheckBox.RenderTransform>
-                </CheckBox>
-            </WrapPanel>
-            <WrapPanel>
-                <TextBlock Text="AdvancedMode"/>
-                <CheckBox Name="AdvancedMod" Checked="AdvancedMod_Checked" RenderTransformOrigin="0.5,0.5">
-                    <CheckBox.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform X="20"/>
-                        </TransformGroup>
-                    </CheckBox.RenderTransform>
-                </CheckBox>                
-            </WrapPanel>*/
-
 
         public void Update()
         { 
@@ -281,7 +234,6 @@ namespace MainApp
                             }
                         }
 
-
                         else if (!statscheck[i])
                         {
                             long SteamID = 0;
@@ -418,7 +370,6 @@ namespace MainApp
                 JunkCode.SetLastBonfire(ID);
                 CHR_INS.WorldChrMan.ChrBasicInfo.ApplyEffect(580);
             }
-
         }
 
         private void VisibilityOfKill_Checked(object sender, RoutedEventArgs e)
@@ -533,7 +484,7 @@ namespace MainApp
 
         private void UseTreeCumButton_Click(object sender, RoutedEventArgs e)
         {
-            CHR_INS.WorldChrMan.ChrBasicInfo.ApplyEffect(3700); //3710 - вроде как не работает если ты хост
+            CHR_INS.WorldChrMan.ChrBasicInfo.ApplyEffect(3700); //3710 - seems like it works only as invader
         }
 
         private void ExitBtn_Click(object sender, RoutedEventArgs e)
@@ -654,11 +605,9 @@ namespace MainApp
             JunkCode.WriteAnimationId(0);
         }
 
-        private void AddSoulsButton_Click(object sender, RoutedEventArgs e)
+        private void ParryMeButton_Click(object sender, RoutedEventArgs e)
         {
-            //SoulsMemory.CHR_INS.WorldChrMan.Animation.PlayAnimation("W_GuardDamageLarge");
             SoulsMemory.CHR_INS.WorldChrMan.Animation.PlayAnimation("W_DamageParry");
-            //JunkCode.WriteAnimationId(6000);
         }
 
         private void FallProt()
@@ -695,14 +644,17 @@ namespace MainApp
                 Thread.Sleep(1400);
             }
         }
+
         private void Artorias_Checked(object sender, RoutedEventArgs e)
         {
             ArtoriasMode = true;
         }
+
         private void Artorias_Unchecked(object sender, RoutedEventArgs e)
         {
             ArtoriasMode = false;
         }
+
         private void FallProtCheckBox_Checked(object sender, RoutedEventArgs e)
         {
             FallFromFliffControl = true;

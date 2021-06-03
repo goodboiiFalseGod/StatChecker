@@ -280,7 +280,7 @@
                 </Button>
             </WrapPanel>
             <WrapPanel Margin="0,0,0,10">
-                <Button Width="75" Height="25" Click="AddSoulsButton_Click">
+                <Button Width="75" Height="25" Click="ParryMeButton_Click">
                     <TextBlock Text="parry me" FontSize="15" RenderTransformOrigin="0,0.5"/>
                 </Button>
                 <Button Width="75" Height="25" Margin="8,0,0,0" Click="HealEveryOneButton_Click">
