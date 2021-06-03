@@ -25,7 +25,6 @@
             <Border x:Name="PART_ContentHost" Focusable="False" Background="{TemplateBinding Background}"/>
         </ControlTemplate>
 
-
         <Style x:Key="{x:Type ComboBox}" TargetType="ComboBox">
             <Setter Property="Template">
                 <Setter.Value>

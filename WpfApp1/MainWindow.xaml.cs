@@ -337,7 +337,7 @@ namespace MainApp
                         switch (teamtypes[i])  //покрас недорого
                         {
                             case 0:
-                                StackPanels[i].Opacity = 1;
+                                StackPanels[i].Opacity = 0;
                                 break;
                             case 1:
                                 imageTiles[i].ImageSource = (ImageSource)Resources["tile_host"];

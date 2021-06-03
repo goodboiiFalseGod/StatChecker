@@ -165,9 +165,6 @@
     <Resource Include="Resources\pics\buttons\redsoapstone.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\pics\buttons\tears.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\pics\buttons\tearsofdenial.png" />
   </ItemGroup>
   <ItemGroup>
