@@ -8,11 +8,20 @@ using SoulsMemory;
 using System.Numerics;
 using System.IO;
 using MainApp.Crutches;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using System.Windows.Interop;
 
 namespace MainApp
 {
     public partial class MainWindow : Window
     {
+        public bool AllowUseEverywhere;
+        public bool EnableHotkeys;
+        Settings Settings_window;
+        private LowLevelKeyboardListener _listener;
+        public Dictionary<int, Hotkey> hotkeys;
         TextBlock[] PanelNames;
         TextBlock[] PanelLevels;
         TextBlock[] PanelStats;
@@ -20,9 +29,13 @@ namespace MainApp
         StackPanel[] StackPanels;
         ImageBrush[] imageTiles;
         public static bool AutoreviveControl = false;
-        public static bool ArtoriasMode = false;
+        public static bool AutoKick = false;
         public static bool FallFromFliffControl = false;
         public static bool KillAllMobs = false;
+        public static bool TriggerCovenants = false;
+        public static bool MapV = true;
+        public static bool HighC = false;
+        public static bool LowC = false;
         public static bool[] iswasempty = {true, true, true, true, true};
         public static bool PlayerKillVisibility = true;
         public static int IdleOccurance;
@@ -32,29 +45,30 @@ namespace MainApp
         public static bool[] Isplayerstruct = {false, false, false, false, false};
         public string Path;
         public string Path2;
-
         public static string[] steamids = JunkCode.GetOnlinePlayersSteamID();
         public static string[] names = JunkCode.GetOnlinePlayersNames();
+        public readonly string gameName;
+        public IntPtr _windowHandle;
 
         public MainWindow()
         {
             InitializeComponent();
             this.Loaded += Bonfires_Loaded;
+            gameName = "DarkSoulsIII";
             PanelNames = new TextBlock[] {p1Name, p2Name, p3Name, p4Name, p5Name};
             PanelLevels = new TextBlock[] {p1SoulLvL, p2SoulLvL, p3SoulLvL, p4SoulLvL, p5SoulLvL};
             PanelStats = new TextBlock[] {p1Stats, p2Stats, p3Stats, p4Stats, p5Stats};
             PanelStatsCheck = new TextBlock[] {p1Statscheck, p2Statscheck, p3Statscheck, p4Statscheck, p5Statscheck};
             StackPanels = new StackPanel[] {Player1, Player2, Player3, Player4, Player5};
             imageTiles = new ImageBrush[] {imageTile1, imageTile2, imageTile3, imageTile4, imageTile5};
-
-            Memory.ProcessHandle = Memory.AttachProc("DarkSoulsIII");
+            Memory.ProcessHandle = Memory.AttachProc(gameName);
 
             Thread ThreadUpdate = new Thread(new ThreadStart(Update));
             ThreadUpdate.Start();
 
-            if (!System.IO.File.Exists(Path + "PlayerBase.txt"))
+            if (!File.Exists(Path + "PlayerBase.txt"))
             {
-                System.IO.StreamWriter Textbase = File.CreateText("PlayerBase.txt");
+                StreamWriter Textbase = File.CreateText("PlayerBase.txt");
                 Textbase.Close();
             }
 
@@ -63,12 +77,25 @@ namespace MainApp
 
         private void Bonfires_Loaded(object sender, RoutedEventArgs e)
         {
+            var s = Toolz.LoadConf(false);
             this.bonfireListBox.Navigate(new Uri("/Crutches/Bonfires.xaml", UriKind.Relative));
+            _windowHandle = new WindowInteropHelper(this).Handle;
+            hotkeys = Toolz.Deserialize(s.hotkeys);
+            _listener = new LowLevelKeyboardListener();
+            _listener.OnKeyPressed += _listener_OnKeyPressed;
+            _listener.HookKeyboard();
+            AllowUseEverywhere = s.AllowUseEverywhere;
+            EnableHotkeys = s.UseHotkeys;
+        }
+        void _listener_OnKeyPressed(object sender, KeyPressedArgs e)
+        {
+            if (!Settings_window.IsClosed) Settings_window.LastKeyPressed = e;
+            this.HotkeyHandler(Toolz.GetVirtualKeyCode(e.KeyPressed, e.Modifiers));
         }
         private void KillPlayer(int PlayerNo)
         {
             int PlayerHandle = JunkCode.GetPlayerHandle();
-            System.Numerics.Vector3 Player1Pos = JunkCode.GetOnlinePlayersPositions(PlayerNo);
+            Vector3 Player1Pos = JunkCode.GetOnlinePlayersPositions(PlayerNo);
             BULLET_MAN.GenerateBullet(PlayerHandle, 0, 100091600, 0, 0, 0, false, false, PlayerKillVisibility,
                 Player1Pos, Player1Pos, Player1Pos, Player1Pos);
         }
@@ -103,18 +130,22 @@ namespace MainApp
                 int[,] Weapons = JunkCode.GetOnlinePlayersWeapons();
                 int[,] Armor = JunkCode.GetOnlinePlayersArmor();
                 int[,] Ring = JunkCode.GetOnlinePlayersRings();
-
                 int ji = 0;
                 Dispatcher.Invoke(() =>
                 {
-                    AnimationText();
-                    if (JunkCode.GetEmberState())
+                    AutoKickBtn.IsChecked = AutoKick;
+                    AutoreviveCheckBox.IsChecked = AutoreviveControl;
+                    CovsTrigger.IsChecked = TriggerCovenants;
+                    Ember.IsChecked = JunkCode.GetEmberState();
+                    MapVBtn.IsChecked = MapV;
+                    HighCBtn.IsChecked = HighC;
+                    LowCBtn.IsChecked = LowC;
+
+                    if (bonfireListBox.IsLoaded && bonfireListBox.Content != null)
                     {
-                        Ember.IsChecked = true;
-                    }
-                    else
-                    {
-                        Ember.IsChecked = false;
+                        var l = Int32.Parse(JunkCode.GetLastBonfire());
+                        if (l != Bonfires.GetValue())
+                            (bonfireListBox.Content as Bonfires).SetValue(l);
                     }
 
                     for (int i = 0; i < 5; i++)
@@ -152,7 +183,7 @@ namespace MainApp
                             "Faith:        \t" + stats[i, 7] + "|\n" +
                             "Luck:         \t" + stats[i, 8] + "|\n";
 
-                        System.IO.StreamWriter Textbaseconnect = new System.IO.StreamWriter(Path, true);
+                        StreamWriter Textbaseconnect = new StreamWriter(Path, true);
 
                         name[i] = names[i];
 
@@ -224,7 +255,7 @@ namespace MainApp
                                 {
                                     Textbaseconnect.WriteLine(System.DateTime.Now + "\t" + "Player " + (i + 1) + " " +
                                                               names[i] + "\n" + "SteamName: " +
-                                                              Network.GetSteamProfileName(SteamProfile) + "\n" +
+                                                              Toolz.GetSteamProfileName(SteamProfile) + "\n" +
                                                               "SteamLink: " + SteamProfile + "\n" + InfoTable + "\n");
                                 }
                             }
@@ -253,8 +284,9 @@ namespace MainApp
                                 PanelStatsCheck[i].Text = "incorrect";
                                     Textbaseconnect.WriteLine(System.DateTime.Now + "\t" + "Idiot cheater: Player " +
                                                               (i + 1) + " " + names[i] + "\n" + "SteamName: " +
-                                                              Network.GetSteamProfileName(SteamProfile) + "\n" +
+                                                              Toolz.GetSteamProfileName(SteamProfile) + "\n" +
                                                               "SteamLink: " + SteamProfile + "\n" + InfoTable + "\n");
+                                if (AutoKick) JunkCode.DisconnectFunc(i + 1);
                             }
 
                             else
@@ -267,26 +299,7 @@ namespace MainApp
                                     PreviousSteam.ToString());
                             }
                         }
-
-                        //ARTORIAS
-                        if (ArtoriasMode)
-                        {
-                            ApplyPerseveranceAndHP();
-                        }
-
-                        GradientStopCollection gsc = new GradientStopCollection();
-                        gsc.Add(new GradientStop()
-                        {
-                            Color = Color.FromRgb(145, 27, 29),
-                            Offset = 0.0
-                        });
-                        gsc.Add(new GradientStop()
-                        {
-                            Color = Color.FromRgb(90, 133, 200),
-                            Offset = 0.5
-                        });
-                        
-                        switch (teamtypes[i])  //покрас недорого
+                        switch (teamtypes[i])
                         {
                             case 0:
                                 StackPanels[i].Opacity = 0;
@@ -335,12 +348,9 @@ namespace MainApp
 
         private void KillAllMobs_Click(object sender, RoutedEventArgs e)
         {
-            float BurgerRadius = 0, BurgerLife = 0;
-            short BurgerDmg = 0;
-
-            BurgerRadius = (float) JunkCode.SaveParam(0x388, 0xA01D0, 0x44, "Float");
-            BurgerLife = (float) JunkCode.SaveParam(0x388, 0xA01D0, 0x10, "Float");
-            BurgerDmg = (short) JunkCode.SaveParam(0x388, 0xA01D0, 0x10, "2Bytes");
+            var BurgerRadius = (float) JunkCode.SaveParam(0x388, 0xA01D0, 0x44, "Float");
+            var BurgerLife = (float) JunkCode.SaveParam(0x388, 0xA01D0, 0x10, "Float");
+            var BurgerDmg = (short) JunkCode.SaveParam(0x388, 0xA01D0, 0x10, "2Bytes");
             JunkCode.WriteParam(0x388, 0xA01D0, 0x10, JunkCode.ValueType.Float, 2);
             JunkCode.WriteParam(0x388, 0xA01D0, 0x44, JunkCode.ValueType.Float, 5000);
             JunkCode.WriteParam(0x2B0, 0x1F1068, 0x50, JunkCode.ValueType.Bytes2, 50000);
@@ -350,8 +360,8 @@ namespace MainApp
             int PlayerHandle = JunkCode.GetPlayerHandle();
 
             BULLET_MAN.GenerateBullet(PlayerHandle, 0, 12403300, 0, 0, 0, false, false, true,
-                CHR_INS.WorldChrMan.ChrBasicInfo.GetPosition(), new System.Numerics.Vector3(0, 0, 0),
-                new System.Numerics.Vector3(0, 0, 0), new System.Numerics.Vector3(0, 0, 0));
+                CHR_INS.WorldChrMan.ChrBasicInfo.GetPosition(), new Vector3(0, 0, 0),
+                new Vector3(0, 0, 0), new Vector3(0, 0, 0));
 
             Thread.Sleep(200);
             JunkCode.WriteParam(0x2B0, 0x1F1068, 0x50, JunkCode.ValueType.Bytes2, BurgerDmg);
@@ -384,16 +394,20 @@ namespace MainApp
 
         private void CovsTrigger_Checked(object sender, RoutedEventArgs e)
         {
+            TriggerCovenants = true;
             IdleOccurance = (int) JunkCode.SaveParam(0x4A8, 0x1BA70, 0x128, "4Byte");
             JunkCode.WriteParam(0x4A8, 0x1BA70, 0x128, JunkCode.ValueType.Bytes4, 9000);
             WatchDogOccurance = (int) JunkCode.SaveParam(0x4A8, 0xAC610, 0x128, "4Byte");
             JunkCode.WriteParam(0x4A8, 0xAC610, 0x128, JunkCode.ValueType.Bytes4, 9010);
+            Console.WriteLine("Covs Trigger CHECKED");
         }
 
         private void CovsTrigger_Unchecked(object sender, RoutedEventArgs e)
         {
+            TriggerCovenants = false;
             JunkCode.WriteParam(0x4A8, 0x1BA70, 0x128, JunkCode.ValueType.Bytes4, IdleOccurance);
             JunkCode.WriteParam(0x4A8, 0x1BA70, 0x128, JunkCode.ValueType.Bytes4, WatchDogOccurance);
+            Console.WriteLine("Covs Trigger UNCHECKED");
         }
 
         private void button_Anim_start(object sender, MouseButtonEventArgs e)
@@ -431,14 +445,6 @@ namespace MainApp
         private void KillMySelfButton_Click(object sender, RoutedEventArgs e)
         {
             JunkCode.WriteAnimationId(90600);
-        }
-
-        private void AnimationText()
-        {
-            //int Id = JunkCode.GetCurrentAnimationId();
-            //string CurrentAnim = JunkCode.GetCurrentAnimationString();
-
-            CurrentAnimText1.Text = Bonfires.GetValue().ToString();
         }
 
         private void UseTearsButton_Click(object sender, RoutedEventArgs e)
@@ -482,9 +488,9 @@ namespace MainApp
             CHR_INS.WorldChrMan.ChrBasicInfo.ApplyEffect(7);
         }
 
-        private void UseTreeCumButton_Click(object sender, RoutedEventArgs e)
+        private void UseSeedButton_Click(object sender, RoutedEventArgs e)
         {
-            CHR_INS.WorldChrMan.ChrBasicInfo.ApplyEffect(3700); //3710 - seems like it works only as invader
+            CHR_INS.WorldChrMan.ChrBasicInfo.ApplyEffect(3700); //3710 - works only as invader
         }
 
         private void ExitBtn_Click(object sender, RoutedEventArgs e)
@@ -497,35 +503,6 @@ namespace MainApp
             base.OnMouseLeftButtonDown(e);
             this.DragMove();
         }
-
-        private void ApplyPerseveranceAndHP()
-        {
-            string CurrentAnim = JunkCode.GetCurrentAnimationString();
-            bool IsPlayersThere = false;
-            int[] PlayersMaxHp = JunkCode.GetOnlinePlayersMaxHP();
-            int indexofstringdeath = CurrentAnim.IndexOf("DeathStart");
-            int indexofstringripost = CurrentAnim.IndexOf("ThrowDef");
-            int indexofstringparry = CurrentAnim.IndexOf("DamageParry");
-            int indexofstringguardbreak = CurrentAnim.IndexOf("GuardBreak");
-            if (indexofstringripost > -1 || indexofstringparry > -1 || indexofstringguardbreak > -1)
-                JunkCode.WriteAnimationId(0);
-
-            for (int i = 0; i < 5; i++)
-            {
-                if (PlayersMaxHp[i] != 0)
-                    IsPlayersThere = true;
-            }
-
-            if (IsPlayersThere && JunkCode.GetPlayerHp() > 0)
-            
-            {
-                //CHR_INS.WorldChrMan.ChrBasicInfo.ApplyEffect(120700); // Perseverence
-                //CHR_INS.WorldChrMan.ChrBasicInfo.ApplyEffect(110); // restore HP and DP
-            }
-                                                                   // 120700 - Perseverence
-                                                                   // 110 - HP/DP
-
-            }
 
         private void Autorevive()
         {
@@ -549,8 +526,6 @@ namespace MainApp
                     JunkCode.WritePlayerHp(MaxHp);
                     JunkCode.WritePlayerFp(MaxFp);
                     JunkCode.WriteAnimationId(0);
-                    //SoulsMemory.CHR_INS.WorldChrMan.Animation.PlayAnimation("W_DragonFullEndBefore_Upper");
-                    //SoulsMemory.CHR_INS.WorldChrMan.Animation.PlayAnimation("W_GuardDamageLarge");
                 }
 
                 if (indexofstringripost > -1 || indexofstringparry > -1 || indexofstringguardbreak > -1)
@@ -562,7 +537,6 @@ namespace MainApp
 
                         JunkCode.WritePlayerHp(MaxHp);
                         JunkCode.WriteAnimationId(0);
-                        //SoulsMemory.CHR_INS.WorldChrMan.Animation.PlayAnimation("W_GuardDamageLarge");
                     }
                 }
                 else
@@ -605,66 +579,19 @@ namespace MainApp
             JunkCode.WriteAnimationId(0);
         }
 
-        private void ParryMeButton_Click(object sender, RoutedEventArgs e)
+        private void StatsButton_Click(object sender, RoutedEventArgs e)
         {
-            SoulsMemory.CHR_INS.WorldChrMan.Animation.PlayAnimation("W_DamageParry");
+            CHR_INS.WorldChrMan.Animation.PlayAnimation("W_CultStart2");
         }
 
-        private void FallProt()
+        private void AutoKick_Checked(object sender, RoutedEventArgs e)
         {
-            /*<WrapPanel Margin="0, 5">
-                <TextBlock Text="FallProt"/>
-                <CheckBox RenderTransformOrigin="0.5,0.5" Checked="FallProtCheckBox_Checked" Unchecked="FallProtCheckBox_Unchecked">
-                    <CheckBox.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform X="60" Y="2"/>
-                        </TransformGroup>
-                    </CheckBox.RenderTransform>
-                </CheckBox>
-            </WrapPanel>*/
-
-            Vector3 PlayerPos = CHR_INS.WorldChrMan.ChrBasicInfo.GetPosition();
-            float PlayerAngle = CHR_INS.WorldChrMan.ChrBasicInfo.GetPosAngle();
-            while (FallFromFliffControl)
-            {
-                if (CHR_INS.WorldChrMan.ChrBasicInfo.isOnGround())
-                {
-                    PlayerPos = CHR_INS.WorldChrMan.ChrBasicInfo.GetPosition();
-                    PlayerAngle = CHR_INS.WorldChrMan.ChrBasicInfo.GetPosAngle();
-                }
-                else
-                {
-                    CHR_INS.CHRDBG.DbgTeleport.ForceTeleport(PlayerPos);
-                    CHR_INS.WorldChrMan.ChrBasicInfo.WriteAngle(PlayerAngle);
-                }
-
-                Thread.Sleep(1400);
-            }
+            AutoKick = true;
         }
 
-        private void Artorias_Checked(object sender, RoutedEventArgs e)
+        private void AutoKick_Unchecked(object sender, RoutedEventArgs e)
         {
-            ArtoriasMode = true;
-        }
-
-        private void Artorias_Unchecked(object sender, RoutedEventArgs e)
-        {
-            ArtoriasMode = false;
-        }
-
-        private void FallProtCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            FallFromFliffControl = true;
-            Thread FallProt = new Thread(new ThreadStart(this.FallProt));
-            FallProt.Start();
-        }
-
-        private void FallProtCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            FallFromFliffControl = false;
+            AutoKick = false;
         }
 
         private void ReviveCheckBox_Checked(object sender, RoutedEventArgs e)
@@ -681,6 +608,7 @@ namespace MainApp
 
         private void MapCheckBox_Checked(object sender, RoutedEventArgs e)
         {
+            MapV = true;
             GAME_REND.GROUP_MASK.ShowMapParts(true);
             GAME_REND.GROUP_MASK.ShowObjects(true);
             GAME_REND.GROUP_MASK.ShowRemo(true);
@@ -688,6 +616,7 @@ namespace MainApp
 
         private void MapCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
+            MapV = false;
             GAME_REND.GROUP_MASK.ShowMapParts(false);
             GAME_REND.GROUP_MASK.ShowObjects(false);
             GAME_REND.GROUP_MASK.ShowRemo(false);
@@ -695,21 +624,25 @@ namespace MainApp
 
         private void HighPolyCheckBox_Checked(object sender, RoutedEventArgs e)
         {
+            HighC = true;
             HIT_INS.WORLD_HIT_MAN.EnableHighPolyColDisplay(true);
         }
 
         private void HighPolyCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
+            HighC = false;
             HIT_INS.WORLD_HIT_MAN.EnableHighPolyColDisplay(false);
         }
 
         private void LowPolyCheckBox_Checked(object sender, RoutedEventArgs e)
         {
+            LowC = true;
             HIT_INS.WORLD_HIT_MAN.EnableLowPolyColDisplay(true);
         }
 
         private void LowPolyCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
+            LowC = false;
             HIT_INS.WORLD_HIT_MAN.EnableLowPolyColDisplay(false);
         }
 
@@ -737,7 +670,124 @@ namespace MainApp
 
         private void AttachButton_Click(object sender, RoutedEventArgs e)
         {
-            Memory.ProcessHandle = Memory.AttachProc("DarkSoulsIII");
+            Memory.ProcessHandle = Memory.AttachProc(gameName);
+        }
+
+        private void SettingsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.Settings_window == null || this.Settings_window.IsClosed)
+            {
+                this.Settings_window = new Settings();
+            }
+            this.Settings_window.Owner = this;
+            this.Settings_window.Top = this.Top + 20;
+            this.Settings_window.Left = this.Left + 20;
+            this.Settings_window.ShowDialog();
+            this.Settings_window.Focus();
+        }
+
+        public void HotkeyHandler(int key)
+        {
+            if (!hotkeys.ContainsKey(key)) return;
+            if (!AllowUseEverywhere && !GameFocused()) return;
+            if (Settings_window == null || Settings_window.IsClosed)
+                switch ((HK_Commands)hotkeys[key].Tag)
+                    {
+                        case HK_Commands.HK_Kick1: JunkCode.DisconnectFunc(1); break;
+                        case HK_Commands.HK_Kick2: JunkCode.DisconnectFunc(2); break;
+                        case HK_Commands.HK_Kick3: JunkCode.DisconnectFunc(3); break;
+                        case HK_Commands.HK_Kick4: JunkCode.DisconnectFunc(4); break;
+                        case HK_Commands.HK_Kick5: JunkCode.DisconnectFunc(5); break;
+                        case HK_Commands.HK_Kill1: KillPlayer(0); break;
+                        case HK_Commands.HK_Kill2: KillPlayer(1); break;
+                        case HK_Commands.HK_Kill3: KillPlayer(2); break;
+                        case HK_Commands.HK_Kill4: KillPlayer(3); break;
+                        case HK_Commands.HK_Kill5: KillPlayer(4); break;
+                        case HK_Commands.HK_KillAllMobs: KillAllMobs_Click(null, null); break;
+                        case HK_Commands.HK_Homeward: HomewardButton_Click(null, null); break;
+                        case HK_Commands.HK_HealMe: HealMySelfButton_Click(null, null); break;
+                        case HK_Commands.HK_KillMe: KillMySelfButton_Click(null, null); break;
+                        case HK_Commands.HK_Stats: StatsButton_Click(null, null); break;
+                        case HK_Commands.HK_HealAll: HealEveryOneButton_Click(null, null); break;
+                        case HK_Commands.HK_AutoRevive: AutoreviveControl = !AutoreviveControl; break;
+                        case HK_Commands.HK_AutoKick: AutoKick = !AutoKick; break;
+                        case HK_Commands.HK_TriggerCovs: TriggerCovenants = !TriggerCovenants; break;
+                        case HK_Commands.HK_Ember: if (JunkCode.GetEmberState()) Ember_Checked(null, null);
+                                else Ember_Unchecked(null, null); break;
+                        case HK_Commands.HK_Mark: MarkButton_Click(null, null); break;
+                        case HK_Commands.HK_Recall: RecallButton_Click(null, null); break;
+                        case HK_Commands.HK_TearsOfDenial: UseTearsButton_Click(null, null); break;
+                        case HK_Commands.HK_DriedFingers: UseFingersButton_Click(null, null); break;
+                        case HK_Commands.HK_UseEmber: UseEmberButton_Click(null, null); break;
+                        case HK_Commands.HK_WhiteSS: UseWhiteSoapstoneButton_Click(null, null); break;
+                        case HK_Commands.HK_RedSS: UseRedSoapstoneButton_Click(null, null); break;
+                        case HK_Commands.HK_RedEye: UseRedEyeButton_Click(null, null); break;
+                        case HK_Commands.HK_BSC: UseBSCButton_Click(null, null); break;
+                        case HK_Commands.HK_Seed: UseSeedButton_Click(null, null); break;
+                        case HK_Commands.HK_MapV: MapV = !MapV; break;
+                        case HK_Commands.HK_HighC: HighC = !HighC; break;
+                        case HK_Commands.HK_LowC: LowC = !LowC; break;
+                        case HK_Commands.HK_Reattach: AttachButton_Click(null, null); break;
+                    }
+        }
+        public bool GameFocused()
+        {
+            string processName = null;
+            try
+            {
+                var activatedHandle = GetForegroundWindow();
+                Process[] processes = Process.GetProcesses();
+                foreach (Process clsProcess in processes)
+                    if (activatedHandle == clsProcess.MainWindowHandle)
+                    { processName = clsProcess.ProcessName; break; }
+            }
+            catch { }
+            return processName == gameName;
+        }
+        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
+        private static extern IntPtr GetForegroundWindow();
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            _listener.UnHookKeyboard();
+        }
+
+        public enum HK_Commands : int
+        {
+            HK_Kick1 = 1,
+            HK_Kick2 = 2,
+            HK_Kick3 = 3,
+            HK_Kick4 = 4,
+            HK_Kick5 = 5,
+            HK_Kill1 = 6,
+            HK_Kill2 = 7,
+            HK_Kill3 = 8,
+            HK_Kill4 = 9,
+            HK_Kill5 = 10,
+            HK_KillAllMobs = 11,
+            HK_Homeward = 12,
+            HK_HealMe = 13,
+            HK_KillMe = 14,
+            HK_Stats = 15,
+            HK_HealAll = 16,
+            HK_AutoRevive = 17,
+            HK_AutoKick = 18,
+            HK_TriggerCovs = 19,
+            HK_Ember = 20,
+            HK_Mark = 21,
+            HK_Recall = 22,
+            HK_TearsOfDenial = 23,
+            HK_DriedFingers = 24,
+            HK_UseEmber = 25,
+            HK_WhiteSS = 26,
+            HK_RedSS = 27,
+            HK_RedEye = 28,
+            HK_BSC = 29,
+            HK_Seed = 30,
+            HK_MapV = 31,
+            HK_HighC = 32,
+            HK_LowC = 33,
+            HK_Reattach = 34
         }
     }
 }

@@ -99,7 +99,7 @@
         <ImageBrush x:Key="WhiteSignButton" ImageSource="pack://application:,,,/Resources/pics/buttons/whitesoapstone.png" Stretch="Fill" AlignmentY="Center" AlignmentX="Center"/>
         <ImageBrush x:Key="RedEyeButton" ImageSource="pack://application:,,,/Resources/pics/buttons/redeye.png" Stretch="Fill" AlignmentY="Center" AlignmentX="Center"/>
         <ImageBrush x:Key="BSCButton" ImageSource="pack://application:,,,/Resources/pics/buttons/blackcrystal.png" Stretch="Fill" AlignmentY="Center" AlignmentX="Center"/>
-        <ImageBrush x:Key="TreeCumButton" ImageSource="pack://application:,,,/Resources/pics/buttons/seed.png" Stretch="Fill" AlignmentY="Center" AlignmentX="Center"/>
+        <ImageBrush x:Key="SeedButton" ImageSource="pack://application:,,,/Resources/pics/buttons/seed.png" Stretch="Fill" AlignmentY="Center" AlignmentX="Center"/>
         <Style x:Key="DS">
             <Setter Property="TextElement.FontFamily" Value="pack://application:,,,/Resources/#OptimusPrinceps" />
             <Setter Property="TextElement.Foreground" Value="#D5D5C7" />
@@ -115,236 +115,254 @@
     </Window.Background>
 
     <WrapPanel Name="MainBackground"  Orientation="Vertical" Style="{DynamicResource DS}" Margin="0, 0, 0, 0">
-        <StackPanel VerticalAlignment="Top" Margin="0" Width="1045">
+        <StackPanel VerticalAlignment="Top" Margin="0" Width="1045" Orientation="Horizontal">
+            <Button x:Name="SettingsBtn" HorizontalAlignment="Right" Width="20" Height="20" Click="SettingsBtn_Click" Margin="988, 6, 8, 0">
+                <Canvas Name="svg8" Width="20" Height="20">
+                    <Canvas.RenderTransform>
+                        <TranslateTransform X="0" Y="0"/>
+                    </Canvas.RenderTransform>
+                    <Canvas.Resources/>
+                    <Canvas Name="Layer1">
+                        <Canvas Name="Layer2">
+                            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path4" Fill="#D5D5C7" Canvas.Left="2.9" Canvas.Top="2.6" Height="12.822" Stretch="Fill" Width="12.046" RenderTransformOrigin="0.5,0.5">
+                                <Path.Data>
+                                    <PathGeometry Figures="M833.86 553.18l-49.1-42.28a352.8 352.8 0 0 0-5.35-137.45l53.15-59.08a64.7 64.7 0 0 0 6.9-77.35L811.3 191.57a64.7 64.7 0 0 0-74.1-27.75l-74 22.85a348.3 348.3 0 0 0-88-53.71Q562 127.35 548.41 122.9L526.18 46.6A64.7 64.7 0 0 0 464.05 0H410.59A64.7 64.7 0 0 0 348 48.38l-19.51 74.83q-13.08 4.35-25.87 9.75A348.92 348.92 0 0 0 191.3 208c-1.48 1.48-2.93 3-4.38 4.49L99.33 197.23A64.7 64.7 0 0 0 30.14 232.5l-23.53 48A64.7 64.7 0 0 0 22.49 358l68.37 58.87a354.82 354.82 0 0 0-2.13 38.71 350.16 350.16 0 0 0 9.71 82.15L45.29 596.83a64.7 64.7 0 0 0-6.9 77.35l28.16 45.45a64.7 64.7 0 0 0 74.1 27.75l74-22.85a348.31 348.31 0 0 0 88 53.71q13.26 5.61 26.85 10.06l22.23 76.29a64.7 64.7 0 0 0 62.12 46.6h53.47a64.7 64.7 0 0 0 62.61-48.38L549.38 788q13.08-4.35 25.87-9.75a348.92 348.92 0 0 0 111.29-75c.43-.43.84-.87 1.26-1.29L757 714a64.7 64.7 0 0 0 69.19-35.27l23.53-48A64.7 64.7 0 0 0 833.86 553.18ZM438.92 660.79c-113.14 0-205.19-92-205.19-205.19s92-205.19 205.19-205.19 205.19 92 205.19 205.19S552.06 660.79 438.92 660.79Z" FillRule="NonZero"/>
+                                </Path.Data>
+                            </Path>
+                        </Canvas>
+                    </Canvas>
+                </Canvas>
+            </Button>
             <Button x:Name="ExitBtn" HorizontalAlignment="Right" Width="20" Height="20" Click="ExitBtn_Click" Margin="0, 6, 8, 0">
                 <TextBlock Text="x" FontSize="14"/>
             </Button>
+
         </StackPanel>
         <WrapPanel Name="MainWind" Orientation="Horizontal" Style="{DynamicResource DS}" Margin="0, 0, 0, 0">
-        <StackPanel VerticalAlignment="Top" Margin="40, 25, 10, 0" Height="365">
-            <TextBlock Text="name" FontSize="25" />
-            <TextBlock Text="soul lvl" FontSize="20"/>
-            <TextBlock Text="vigor" FontSize="20"/>
-            <TextBlock Text="attunement" FontSize="20"/>
-            <TextBlock Text="stamina" FontSize="20"/>
-            <TextBlock Text="vitality" FontSize="20"/>
-            <TextBlock Text="strength" FontSize="20"/>
-            <TextBlock Text="dexterity" FontSize="20"/>
-            <TextBlock Text="intelligence" FontSize="20"/>
-            <TextBlock Text="faith" FontSize="20"/>
-            <TextBlock Text="luck" FontSize="20"/>
-            <TextBlock Text="is stats match" FontSize="20"/>
-            <Button Height="25" Width="115"  Margin="5, 2, 5, 0" x:Name="AttachButton" Click="AttachButton_Click" RenderTransformOrigin="0.5,0.5">
-                <Button.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform Y="30"/>
-                    </TransformGroup>
-                </Button.RenderTransform>
-                <TextBlock FontSize="18" Text="reattach"/>
-            </Button>
-        </StackPanel>
+            <StackPanel VerticalAlignment="Top" Margin="40, 25, 10, 0" Height="365">
+                <TextBlock Text="name" FontSize="25" />
+                <TextBlock Text="soul lvl" FontSize="20"/>
+                <TextBlock Text="vigor" FontSize="20"/>
+                <TextBlock Text="attunement" FontSize="20"/>
+                <TextBlock Text="stamina" FontSize="20"/>
+                <TextBlock Text="vitality" FontSize="20"/>
+                <TextBlock Text="strength" FontSize="20"/>
+                <TextBlock Text="dexterity" FontSize="20"/>
+                <TextBlock Text="intelligence" FontSize="20"/>
+                <TextBlock Text="faith" FontSize="20"/>
+                <TextBlock Text="luck" FontSize="20"/>
+                <TextBlock Text="is stats match" FontSize="20"/>
+                <Button Height="25" Width="115"  Margin="5, 2, 5, 0" x:Name="AttachButton" Click="AttachButton_Click" RenderTransformOrigin="0.5,0.5">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform Y="30"/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <TextBlock FontSize="18" Text="reattach"/>
+                </Button>
+            </StackPanel>
 
             <StackPanel VerticalAlignment="Top" Margin="5, 20, 5, 0" Height="380" Name="Player1" >
-            <StackPanel.Background>
-                <ImageBrush x:Name="imageTile1" Stretch="Fill" ImageSource="{DynamicResource tile_host}" AlignmentY="Top" AlignmentX="Center" Opacity="1">
-                    <ImageBrush.Transform>
-                        <ScaleTransform ScaleX="1" ScaleY="1"/>
-                    </ImageBrush.Transform>
-                </ImageBrush>
-            </StackPanel.Background>
-            <Viewbox Stretch="Uniform" Width="125" Height="30" StretchDirection="DownOnly">
-                <TextBlock Margin="0, 10, 0, 0" Name="p1Name" FontSize="20" Text="Empty" />
-            </Viewbox>
-            <TextBlock Name="p1SoulLvL"  Margin="0, 5, 0, 0" FontSize="20" Width="125" Height="25" TextAlignment="Center"/>
-            <TextBlock Name="p1Stats" FontSize="20" Width="125" Height="205" TextAlignment="Center"/>
-            <TextBlock Name="p1Statscheck" FontSize="20" Width="125" Height="25" TextAlignment="Center"/>
-            <Button HorizontalAlignment="Center"  Click="KillButton_Click" Margin="5" Tag="1">
-                <TextBlock Text="KILL" FontSize="20" Name="KillPlayer1"/>
-            </Button>
-            <Button HorizontalAlignment="Center"  Click="KickButton_Click" Margin="0" Tag="1">
-                <TextBlock Text="KICK" FontSize="20" Name="KickPlayer1"/>
-            </Button>
-        </StackPanel>
+                <StackPanel.Background>
+                    <ImageBrush x:Name="imageTile1" Stretch="Fill" ImageSource="{DynamicResource tile_host}" AlignmentY="Top" AlignmentX="Center" Opacity="1">
+                        <ImageBrush.Transform>
+                            <ScaleTransform ScaleX="1" ScaleY="1"/>
+                        </ImageBrush.Transform>
+                    </ImageBrush>
+                </StackPanel.Background>
+                <Viewbox Stretch="Uniform" Width="125" Height="30" StretchDirection="DownOnly">
+                    <TextBlock Margin="0, 10, 0, 0" Name="p1Name" FontSize="20" Text="Empty" />
+                </Viewbox>
+                <TextBlock Name="p1SoulLvL"  Margin="0, 5, 0, 0" FontSize="20" Width="125" Height="25" TextAlignment="Center"/>
+                <TextBlock Name="p1Stats" FontSize="20" Width="125" Height="205" TextAlignment="Center"/>
+                <TextBlock Name="p1Statscheck" FontSize="20" Width="125" Height="25" TextAlignment="Center"/>
+                <Button HorizontalAlignment="Center"  Click="KillButton_Click" Margin="5" Tag="1">
+                    <TextBlock Text="KILL" FontSize="20" Name="KillPlayer1"/>
+                </Button>
+                <Button HorizontalAlignment="Center"  Click="KickButton_Click" Margin="0" Tag="1">
+                    <TextBlock Text="KICK" FontSize="20" Name="KickPlayer1"/>
+                </Button>
+            </StackPanel>
             <StackPanel VerticalAlignment="Top" Margin="5, 20, 5, 0" Height="380" Name="Player2">
-            <StackPanel.Background>
-                <ImageBrush x:Name="imageTile2" Stretch="Fill" ImageSource="{DynamicResource tile_white}" AlignmentY="Top" AlignmentX="Center" Opacity="1">
-                    <ImageBrush.Transform>
-                        <ScaleTransform ScaleX="1" ScaleY="1"/>
-                    </ImageBrush.Transform>
-                </ImageBrush>
-            </StackPanel.Background>
-            <Viewbox Stretch="Uniform" Width="125" Height="30" StretchDirection="DownOnly">
-                <TextBlock Margin="0, 10, 0, 0" Name="p2Name" FontSize="25" Text="Empty" />
-            </Viewbox>
-            <TextBlock Name="p2SoulLvL" Margin="0, 5, 0, 0" FontSize="20" Width="125" Height="25" TextAlignment="Center"/>
-            <TextBlock Name="p2Stats" FontSize="20" Width="125" Height="205" TextAlignment="Center"/>
-            <TextBlock Name="p2Statscheck" FontSize="20" Width="125" Height="25" TextAlignment="Center"/>
-            <Button HorizontalAlignment="Center"  Click="KillButton_Click" Margin="5" Tag="2">
-                <TextBlock Text="KILL" FontSize="20" Name="KillPlayer2"/>
-            </Button>
-            <Button HorizontalAlignment="Center"  Click="KickButton_Click" Margin="0"  Tag="2">
-                <TextBlock Text="KICK" FontSize="20" Name="KickPlayer2"/>
-            </Button>
-        </StackPanel>
+                <StackPanel.Background>
+                    <ImageBrush x:Name="imageTile2" Stretch="Fill" ImageSource="{DynamicResource tile_white}" AlignmentY="Top" AlignmentX="Center" Opacity="1">
+                        <ImageBrush.Transform>
+                            <ScaleTransform ScaleX="1" ScaleY="1"/>
+                        </ImageBrush.Transform>
+                    </ImageBrush>
+                </StackPanel.Background>
+                <Viewbox Stretch="Uniform" Width="125" Height="30" StretchDirection="DownOnly">
+                    <TextBlock Margin="0, 10, 0, 0" Name="p2Name" FontSize="25" Text="Empty" />
+                </Viewbox>
+                <TextBlock Name="p2SoulLvL" Margin="0, 5, 0, 0" FontSize="20" Width="125" Height="25" TextAlignment="Center"/>
+                <TextBlock Name="p2Stats" FontSize="20" Width="125" Height="205" TextAlignment="Center"/>
+                <TextBlock Name="p2Statscheck" FontSize="20" Width="125" Height="25" TextAlignment="Center"/>
+                <Button HorizontalAlignment="Center"  Click="KillButton_Click" Margin="5" Tag="2">
+                    <TextBlock Text="KILL" FontSize="20" Name="KillPlayer2"/>
+                </Button>
+                <Button HorizontalAlignment="Center"  Click="KickButton_Click" Margin="0"  Tag="2">
+                    <TextBlock Text="KICK" FontSize="20" Name="KickPlayer2"/>
+                </Button>
+            </StackPanel>
             <StackPanel VerticalAlignment="Top" Margin="5, 20, 5, 0" Height="380" Name="Player3">
-            <StackPanel.Background>
-                <ImageBrush x:Name="imageTile3" Stretch="Fill" ImageSource="{DynamicResource tile_red}" AlignmentY="Top" AlignmentX="Center" Opacity="1">
-                    <ImageBrush.Transform>
-                        <ScaleTransform ScaleX="1" ScaleY="1"/>
-                    </ImageBrush.Transform>
-                </ImageBrush>
-            </StackPanel.Background>
-            <Viewbox Stretch="Uniform" Width="125" Height="30" StretchDirection="DownOnly">
-                <TextBlock Margin="0, 10, 0, 0" Name="p3Name" FontSize="25" Text="Empty" />
-            </Viewbox>
-            <TextBlock Name="p3SoulLvL" Margin="0, 5, 0, 0" FontSize="20" Width="125" Height="25" TextAlignment="Center"/>
-            <TextBlock Name="p3Stats" FontSize="20" Width="125" Height="205" TextAlignment="Center"/>
-            <TextBlock Name="p3Statscheck" FontSize="20" Width="125" Height="25" TextAlignment="Center"/>
-            <Button HorizontalAlignment="Center"  Click="KillButton_Click" Margin="5"  Tag="3">
-                <TextBlock Text="KILL" FontSize="20" Name="KillPlayer3"/>
-            </Button>
-            <Button HorizontalAlignment="Center"  Click="KickButton_Click" Margin="0"  Tag="3">
-                <TextBlock Text="KICK" FontSize="20" Name="KickPlayer3"/>
-            </Button>
-        </StackPanel>
+                <StackPanel.Background>
+                    <ImageBrush x:Name="imageTile3" Stretch="Fill" ImageSource="{DynamicResource tile_red}" AlignmentY="Top" AlignmentX="Center" Opacity="1">
+                        <ImageBrush.Transform>
+                            <ScaleTransform ScaleX="1" ScaleY="1"/>
+                        </ImageBrush.Transform>
+                    </ImageBrush>
+                </StackPanel.Background>
+                <Viewbox Stretch="Uniform" Width="125" Height="30" StretchDirection="DownOnly">
+                    <TextBlock Margin="0, 10, 0, 0" Name="p3Name" FontSize="25" Text="Empty" />
+                </Viewbox>
+                <TextBlock Name="p3SoulLvL" Margin="0, 5, 0, 0" FontSize="20" Width="125" Height="25" TextAlignment="Center"/>
+                <TextBlock Name="p3Stats" FontSize="20" Width="125" Height="205" TextAlignment="Center"/>
+                <TextBlock Name="p3Statscheck" FontSize="20" Width="125" Height="25" TextAlignment="Center"/>
+                <Button HorizontalAlignment="Center"  Click="KillButton_Click" Margin="5"  Tag="3">
+                    <TextBlock Text="KILL" FontSize="20" Name="KillPlayer3"/>
+                </Button>
+                <Button HorizontalAlignment="Center"  Click="KickButton_Click" Margin="0"  Tag="3">
+                    <TextBlock Text="KICK" FontSize="20" Name="KickPlayer3"/>
+                </Button>
+            </StackPanel>
             <StackPanel VerticalAlignment="Top" Margin="5, 20, 5, 0" Height="380" Name="Player4">
-            <StackPanel.Background>
-                <ImageBrush x:Name="imageTile4" Stretch="Fill" ImageSource="{DynamicResource tile_marauder}" AlignmentY="Top" AlignmentX="Center" Opacity="1">
-                    <ImageBrush.Transform>
-                        <ScaleTransform ScaleX="1" ScaleY="1"/>
-                    </ImageBrush.Transform>
-                </ImageBrush>
-            </StackPanel.Background>
-            <Viewbox Stretch="Uniform" Width="125" Height="30" StretchDirection="DownOnly">
-                <TextBlock Margin="0, 10, 0, 0" Name="p4Name" FontSize="25" Text="Empty" />
-            </Viewbox>
-            <TextBlock Name="p4SoulLvL" Margin="0, 5, 0, 0" FontSize="20" Width="125" Height="25" TextAlignment="Center"/>
-            <TextBlock Name="p4Stats" FontSize="20" Width="125" Height="205" TextAlignment="Center"/>
-            <TextBlock Name="p4Statscheck" FontSize="20" Width="125" Height="25" TextAlignment="Center"/>
-            <Button HorizontalAlignment="Center"  Click="KillButton_Click" Margin="5" Tag="4">
-                <TextBlock Text="KILL" FontSize="20" Name="KillPlayer4"/>
-            </Button>
-            <Button HorizontalAlignment="Center"  Click="KickButton_Click" Margin="0"  Tag="4">
-                <TextBlock Text="KICK" FontSize="20" Name="KickPlayer4"/>
-            </Button>
-        </StackPanel>
+                <StackPanel.Background>
+                    <ImageBrush x:Name="imageTile4" Stretch="Fill" ImageSource="{DynamicResource tile_marauder}" AlignmentY="Top" AlignmentX="Center" Opacity="1">
+                        <ImageBrush.Transform>
+                            <ScaleTransform ScaleX="1" ScaleY="1"/>
+                        </ImageBrush.Transform>
+                    </ImageBrush>
+                </StackPanel.Background>
+                <Viewbox Stretch="Uniform" Width="125" Height="30" StretchDirection="DownOnly">
+                    <TextBlock Margin="0, 10, 0, 0" Name="p4Name" FontSize="25" Text="Empty" />
+                </Viewbox>
+                <TextBlock Name="p4SoulLvL" Margin="0, 5, 0, 0" FontSize="20" Width="125" Height="25" TextAlignment="Center"/>
+                <TextBlock Name="p4Stats" FontSize="20" Width="125" Height="205" TextAlignment="Center"/>
+                <TextBlock Name="p4Statscheck" FontSize="20" Width="125" Height="25" TextAlignment="Center"/>
+                <Button HorizontalAlignment="Center"  Click="KillButton_Click" Margin="5" Tag="4">
+                    <TextBlock Text="KILL" FontSize="20" Name="KillPlayer4"/>
+                </Button>
+                <Button HorizontalAlignment="Center"  Click="KickButton_Click" Margin="0"  Tag="4">
+                    <TextBlock Text="KICK" FontSize="20" Name="KickPlayer4"/>
+                </Button>
+            </StackPanel>
             <StackPanel VerticalAlignment="Top" Margin="5, 20, 5, 0"  Height="380" x:Name="Player5">
-            <StackPanel.Background>
-                <ImageBrush x:Name="imageTile5" Stretch="Fill" ImageSource="{DynamicResource tile_covs}" AlignmentY="Top" AlignmentX="Center" Opacity="1">
-                    <ImageBrush.Transform>
-                        <ScaleTransform ScaleX="1" ScaleY="1"/>
-                    </ImageBrush.Transform>
-                </ImageBrush>
-            </StackPanel.Background>
-            <Viewbox Stretch="Uniform" Width="125" Height="30" StretchDirection="DownOnly">
-                <TextBlock Margin="0, 10, 0, 0" x:Name="p5Name" FontSize="25" Text="Empty" />
-            </Viewbox>
-            <TextBlock x:Name="p5SoulLvL"  Margin="0, 5, 0, 0" FontSize="20" Width="125" Height="25" TextAlignment="Center"/>
-            <TextBlock x:Name="p5Stats" FontSize="20" Width="125" Height="205" TextAlignment="Center"/>
-            <TextBlock x:Name="p5Statscheck" FontSize="20" Width="125" Height="25" TextAlignment="Center"/>
-            <Button HorizontalAlignment="Center"  Click="KillButton_Click" Margin="5" Tag="5">
-                <TextBlock Text="KILL" FontSize="20" x:Name="KillPlayer5"/>
-            </Button>
-            <Button HorizontalAlignment="Center"  Click="KickButton_Click" Margin="0,0,0,15" Tag="5">
-                <TextBlock Text="KICK" FontSize="20" x:Name="KickPlayer5"/>
-            </Button>
-        </StackPanel>
+                <StackPanel.Background>
+                    <ImageBrush x:Name="imageTile5" Stretch="Fill" ImageSource="{DynamicResource tile_covs}" AlignmentY="Top" AlignmentX="Center" Opacity="1">
+                        <ImageBrush.Transform>
+                            <ScaleTransform ScaleX="1" ScaleY="1"/>
+                        </ImageBrush.Transform>
+                    </ImageBrush>
+                </StackPanel.Background>
+                <Viewbox Stretch="Uniform" Width="125" Height="30" StretchDirection="DownOnly">
+                    <TextBlock Margin="0, 10, 0, 0" x:Name="p5Name" FontSize="25" Text="Empty" />
+                </Viewbox>
+                <TextBlock x:Name="p5SoulLvL"  Margin="0, 5, 0, 0" FontSize="20" Width="125" Height="25" TextAlignment="Center"/>
+                <TextBlock x:Name="p5Stats" FontSize="20" Width="125" Height="205" TextAlignment="Center"/>
+                <TextBlock x:Name="p5Statscheck" FontSize="20" Width="125" Height="25" TextAlignment="Center"/>
+                <Button HorizontalAlignment="Center"  Click="KillButton_Click" Margin="5" Tag="5">
+                    <TextBlock Text="KILL" FontSize="20" x:Name="KillPlayer5"/>
+                </Button>
+                <Button HorizontalAlignment="Center"  Click="KickButton_Click" Margin="0,0,0,15" Tag="5">
+                    <TextBlock Text="KICK" FontSize="20" x:Name="KickPlayer5"/>
+                </Button>
+            </StackPanel>
 
             <StackPanel VerticalAlignment="Top" Margin="5, 30, 5, -80" Height="450">
-            <WrapPanel Margin="0, 5">
-                <Button Width="155" Height="25" Margin="0,10,0,0" Click="KillAllMobs_Click">
-                    <TextBlock Text="kill all mobs" FontSize="16"/>
-                </Button>
-            </WrapPanel>
-            <WrapPanel Margin="0, 5">
-                <Frame x:Name="bonfireListBox"   
+                <WrapPanel Margin="0, 5">
+                    <Button Width="158" Height="25" Margin="0,10,0,0" Click="KillAllMobs_Click">
+                        <TextBlock Text="kill all mobs" FontSize="16"/>
+                    </Button>
+                </WrapPanel>
+                <WrapPanel Margin="0, 5">
+                    <Frame x:Name="bonfireListBox"
                NavigationUIVisibility="Hidden"/>
-            </WrapPanel>
-            <WrapPanel Margin="0, 5">
-                <Button Width="155" Height="25" Margin="0,0,0,0" Click="TeleportButton_Click">
-                    <TextBlock x:Name="homeward_btn" Text="homeward to bonfire" FontSize="14" />
-                </Button>
-            </WrapPanel>
-            <WrapPanel Margin="0,0,0,5">
+                </WrapPanel>
+                <WrapPanel Margin="0, 5">
+                    <Button Width="158" Height="25" Margin="0,0,0,0" Click="TeleportButton_Click">
+                        <TextBlock x:Name="homeward_btn" Text="homeward to bonfire" FontSize="14" />
+                    </Button>
+                </WrapPanel>
+                <WrapPanel Margin="0,0,0,5">
 
-            </WrapPanel>
-            <WrapPanel Margin="0,0,0,5">
-                <Button Width="75" Height="25" Margin="0,5,0,0" Click="HealMySelfButton_Click">
-                    <TextBlock Text="heal me" FontSize="15"/>
-                </Button>
-                <Button Width="75" Height="25" Margin="8,5,0,0" Click="KillMySelfButton_Click">
-                    <TextBlock Text="kill me" FontSize="15" RenderTransformOrigin="0,0.5"/>
-                </Button>
-            </WrapPanel>
-            <WrapPanel Margin="0,0,0,10">
-                <Button Width="75" Height="25" Click="ParryMeButton_Click">
-                    <TextBlock Text="parry me" FontSize="15" RenderTransformOrigin="0,0.5"/>
-                </Button>
-                <Button Width="75" Height="25" Margin="8,0,0,0" Click="HealEveryOneButton_Click">
-                    <TextBlock Text="heal all" FontSize="15" RenderTransformOrigin="0,0.5"/>
-                </Button>
-            </WrapPanel>
-            <WrapPanel Margin="0,0,0,10">
-                <Button Width="75" Height="25" Click="SetRTSRState_Click" Visibility="Collapsed">
-                    <TextBlock Text="RTSR" FontSize="15" RenderTransformOrigin="0,0.5"/>
-                </Button>
-            </WrapPanel>
-            <WrapPanel Margin="0, 5">
-                <ToggleButton Margin="0,0,8,0" Name="AutoreviveCheckBox" Checked="ReviveCheckBox_Checked" Unchecked="ReviveCheckBox_Unchecked" IsChecked="False">
-                    <TextBlock Text="auto-revive" FontSize="13"/>
-                </ToggleButton>
-                <ToggleButton Checked="Artorias_Checked" Unchecked="Artorias_Unchecked" IsChecked="False">
-                    <TextBlock Text="anti-parry" FontSize="13"/>
-                </ToggleButton>
-            </WrapPanel>
-            <WrapPanel Margin="0, 5">
-                <ToggleButton Margin="0,0,8,0" Name="CovsTrigger" Checked="CovsTrigger_Checked" Unchecked="CovsTrigger_Unchecked">
-                    <TextBlock Text="covenants" FontSize="14"/>
-                </ToggleButton>
-                <ToggleButton x:Name="Ember" Checked="Ember_Checked" Unchecked="Ember_Unchecked" IsChecked="False">
-                    <TextBlock Text="ember" FontSize="14"/>
-                </ToggleButton>
-            </WrapPanel>
-            <WrapPanel>
-                <Button Width="75" Height="25" Margin="0,0,0,0" Click="MarkButton_Click">
-                    <TextBlock Text="mark" FontSize="15"/>
-                </Button>
-                <Button Width="75" Height="25" Margin="8,0,0,0" Click="RecallButton_Click">
-                    <TextBlock Text="recall" FontSize="15" RenderTransformOrigin="0,0.5"/>
-                </Button>
-            </WrapPanel>
-            <WrapPanel Margin="0, 10" Visibility="Collapsed">
-                <TextBlock>ID:</TextBlock>
-                <TextBox Name="CurrentAnimText1" Width="140" Background="Black" Foreground="#D5D5C7"></TextBox>
-            </WrapPanel>
-            <WrapPanel Margin="0, 90, 0, 0">
+                </WrapPanel>
+                <WrapPanel Margin="0,0,0,5">
+                    <Button Width="75" Height="25" Margin="0,5,0,0" Click="HealMySelfButton_Click">
+                        <TextBlock Text="heal me" FontSize="15"/>
+                    </Button>
+                    <Button Width="75" Height="25" Margin="8,5,0,0" Click="KillMySelfButton_Click">
+                        <TextBlock Text="kill me" FontSize="15" RenderTransformOrigin="0,0.5"/>
+                    </Button>
+                </WrapPanel>
+                <WrapPanel Margin="0,0,0,10">
+                    <Button Width="75" Height="25" Click="StatsButton_Click">
+                        <TextBlock Text="stats" FontSize="15" RenderTransformOrigin="0,0.5"/>
+                    </Button>
+                    <Button Width="75" Height="25" Margin="8,0,0,0" Click="HealEveryOneButton_Click">
+                        <TextBlock Text="heal all" FontSize="15" RenderTransformOrigin="0,0.5"/>
+                    </Button>
+                </WrapPanel>
+                <WrapPanel Margin="0,0,0,10">
+                    <Button Width="75" Height="25" Click="SetRTSRState_Click" Visibility="Collapsed">
+                        <TextBlock Text="RTSR" FontSize="15" RenderTransformOrigin="0,0.5"/>
+                    </Button>
+                </WrapPanel>
+                <WrapPanel Margin="0, 5">
+                    <ToggleButton Margin="0,0,8,0" Name="AutoreviveCheckBox" Checked="ReviveCheckBox_Checked" Unchecked="ReviveCheckBox_Unchecked" IsChecked="False">
+                        <TextBlock Text="auto-revive" FontSize="13"/>
+                    </ToggleButton>
+                    <ToggleButton Name="AutoKickBtn" Checked="AutoKick_Checked" Unchecked="AutoKick_Unchecked" IsChecked="False">
+                        <TextBlock Text="auto-kick" FontSize="13"/>
+                    </ToggleButton>
+                </WrapPanel>
+                <WrapPanel Margin="0, 5">
+                    <ToggleButton Margin="0,0,8,0" Name="CovsTrigger" Checked="CovsTrigger_Checked" Unchecked="CovsTrigger_Unchecked">
+                        <TextBlock Text="covenants" FontSize="14"/>
+                    </ToggleButton>
+                    <ToggleButton x:Name="Ember" Checked="Ember_Checked" Unchecked="Ember_Unchecked" IsChecked="False">
+                        <TextBlock Text="ember" FontSize="14"/>
+                    </ToggleButton>
+                </WrapPanel>
+                <WrapPanel Margin="0, 5, 0, 0">
+                    <Button Width="75" Height="25" Margin="0,0,0,0" Click="MarkButton_Click">
+                        <TextBlock Text="mark" FontSize="15"/>
+                    </Button>
+                    <Button Width="75" Height="25" Margin="8,0,0,0" Click="RecallButton_Click">
+                        <TextBlock Text="recall" FontSize="15" RenderTransformOrigin="0,0.5"/>
+                    </Button>
+                </WrapPanel>
+                <WrapPanel Margin="0, 10" Visibility="Collapsed">
+                    <TextBlock>ID:</TextBlock>
+                    <TextBox Name="CurrentAnimText1" Width="140" Background="Black" Foreground="#D5D5C7"></TextBox>
+                </WrapPanel>
+                <WrapPanel Margin="0, 90, 0, 0">
 
-                <ToggleButton Width="48" Margin="2, 0, 5, 0" Checked="MapCheckBox_Checked" Unchecked="MapCheckBox_Unchecked" IsChecked="True">
-                    <TextBlock Text="MapV"/>
-                </ToggleButton>
-                <ToggleButton Width="48" Margin="0, 0, 5, 0" Checked="HighPolyCheckBox_Checked" Unchecked="HighPolyCheckBox_Unchecked">
-                    <TextBlock Text="HighC"/>
-                </ToggleButton>
-                <ToggleButton Width="48" Margin="0, 0, 5, 0" Checked="LowPolyCheckBox_Checked" Unchecked="LowPolyCheckBox_Unchecked">
-                    <TextBlock Text="LowC"/>
-                </ToggleButton>
+                    <ToggleButton Name="MapVBtn" Width="48" Margin="2, 0, 5, 0" Checked="MapCheckBox_Checked" Unchecked="MapCheckBox_Unchecked" IsChecked="True">
+                        <TextBlock Text="MapV"/>
+                    </ToggleButton>
+                    <ToggleButton Name="HighCBtn" Width="48" Margin="0, 0, 5, 0" Checked="HighPolyCheckBox_Checked" Unchecked="HighPolyCheckBox_Unchecked">
+                        <TextBlock Text="HighC"/>
+                    </ToggleButton>
+                    <ToggleButton Name="LowCBtn" Width="48" Margin="0, 0, 5, 0" Checked="LowPolyCheckBox_Checked" Unchecked="LowPolyCheckBox_Unchecked">
+                        <TextBlock Text="LowC"/>
+                    </ToggleButton>
 
-            </WrapPanel>
-        </StackPanel>
-        <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="184, 15, 0, 0" Height="60" Width="660">
-            <WrapPanel Margin="24,0"></WrapPanel>
-            <Button Margin="5, 0" PreviewMouseLeftButtonDown="button_Anim_start" PreviewMouseLeftButtonUp="button_Anim_end" HorizontalAlignment="Stretch" Width="60" Height="60" Background="{StaticResource TearsButton}" Click="UseTearsButton_Click"/>
-            <Button Margin="5, 0" PreviewMouseLeftButtonDown="button_Anim_start" PreviewMouseLeftButtonUp="button_Anim_end" HorizontalAlignment="Center" Width="60" Height="60" Background="{StaticResource FingersButton}" Click="UseFingersButton_Click"/>
-            <Button Margin="5, 0" PreviewMouseLeftButtonDown="button_Anim_start" PreviewMouseLeftButtonUp="button_Anim_end" HorizontalAlignment="Center" Width="60" Height="60" Background="{StaticResource EmberButton}" Click="UseEmberButton_Click"/>
-            <Button Margin="5, 0" PreviewMouseLeftButtonDown="button_Anim_start" PreviewMouseLeftButtonUp="button_Anim_end" HorizontalAlignment="Center" Width="60" Height="60" Background="{StaticResource WhiteSignButton}" Click="UseWhiteSoapstoneButton_Click"/>
-            <Button Margin="5, 0" PreviewMouseLeftButtonDown="button_Anim_start" PreviewMouseLeftButtonUp="button_Anim_end" HorizontalAlignment="Center" Width="60" Height="60" Background="{StaticResource RedSignButton}" Click="UseRedSoapstoneButton_Click"/>
-            <Button Margin="5, 0" PreviewMouseLeftButtonDown="button_Anim_start" PreviewMouseLeftButtonUp="button_Anim_end" HorizontalAlignment="Center" Width="60" Height="60" Background="{StaticResource RedEyeButton}" Click="UseRedEyeButton_Click"/>
-            <Button Margin="5, 0" PreviewMouseLeftButtonDown="button_Anim_start" PreviewMouseLeftButtonUp="button_Anim_end" HorizontalAlignment="Center" Width="60" Height="60" Background="{StaticResource BSCButton}" Click="UseBSCButton_Click"/>
-            <Button Margin="5, 0" PreviewMouseLeftButtonDown="button_Anim_start" PreviewMouseLeftButtonUp="button_Anim_end" HorizontalAlignment="Center" Width="60" Height="60" Background="{StaticResource TreeCumButton}" Click="UseTreeCumButton_Click"/>
-        </StackPanel>
+                </WrapPanel>
+            </StackPanel>
+            <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="184, 15, 0, 0" Height="60" Width="660">
+                <WrapPanel Margin="24,0"></WrapPanel>
+                <Button Margin="5, 0" PreviewMouseLeftButtonDown="button_Anim_start" PreviewMouseLeftButtonUp="button_Anim_end" HorizontalAlignment="Stretch" Width="60" Height="60" Background="{StaticResource TearsButton}" Click="UseTearsButton_Click"/>
+                <Button Margin="5, 0" PreviewMouseLeftButtonDown="button_Anim_start" PreviewMouseLeftButtonUp="button_Anim_end" HorizontalAlignment="Center" Width="60" Height="60" Background="{StaticResource FingersButton}" Click="UseFingersButton_Click"/>
+                <Button Margin="5, 0" PreviewMouseLeftButtonDown="button_Anim_start" PreviewMouseLeftButtonUp="button_Anim_end" HorizontalAlignment="Center" Width="60" Height="60" Background="{StaticResource EmberButton}" Click="UseEmberButton_Click"/>
+                <Button Margin="5, 0" PreviewMouseLeftButtonDown="button_Anim_start" PreviewMouseLeftButtonUp="button_Anim_end" HorizontalAlignment="Center" Width="60" Height="60" Background="{StaticResource WhiteSignButton}" Click="UseWhiteSoapstoneButton_Click"/>
+                <Button Margin="5, 0" PreviewMouseLeftButtonDown="button_Anim_start" PreviewMouseLeftButtonUp="button_Anim_end" HorizontalAlignment="Center" Width="60" Height="60" Background="{StaticResource RedSignButton}" Click="UseRedSoapstoneButton_Click"/>
+                <Button Margin="5, 0" PreviewMouseLeftButtonDown="button_Anim_start" PreviewMouseLeftButtonUp="button_Anim_end" HorizontalAlignment="Center" Width="60" Height="60" Background="{StaticResource RedEyeButton}" Click="UseRedEyeButton_Click"/>
+                <Button Margin="5, 0" PreviewMouseLeftButtonDown="button_Anim_start" PreviewMouseLeftButtonUp="button_Anim_end" HorizontalAlignment="Center" Width="60" Height="60" Background="{StaticResource BSCButton}" Click="UseBSCButton_Click"/>
+                <Button Margin="5, 0" PreviewMouseLeftButtonDown="button_Anim_start" PreviewMouseLeftButtonUp="button_Anim_end" HorizontalAlignment="Center" Width="60" Height="60" Background="{StaticResource SeedButton}" Click="UseSeedButton_Click"/>
+            </StackPanel>
         </WrapPanel>
     </WrapPanel>
 </Window>

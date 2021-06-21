@@ -653,31 +653,18 @@ namespace SoulsMemory
 
         public static bool[] StatChecker(int[,] PlayersStats, int[] PlayersSl)
         {
-            //todo: aaaa
             var IsStatsMatch = new bool[5];
             for (var i = 0; i < 5; i++)
             {
-                var StatsSumm = -89; //Типа у всех изначально сумма равна 89 + уровень (1) = 90
+                var StatsSumm = -89;
                 IsStatsMatch[i] = true;
 
-                if (PlayersSl[i] < 1 || PlayersSl[i] > 802) //SoulLvL
+                if (PlayersSl[i] < 1 || PlayersSl[i] > 802)
                 {
                     IsStatsMatch[i] = false;
                     continue;
                 }
 
-                /*
-                 * Не знаю, нахуя, но раз надо, то проверим все в отдельности
-                 * 0 - vigor
-                 * 1 - atttt
-                 * 2 - end
-                 * 3 - bitt
-                 * 4 - str
-                 * 5 - dex
-                 * 6 - int
-                 * 7 - fth
-                 * 8 - luck
-                 */
                 var minLevels = new int[] { 9, 6, 9, 7, 7, 8, 7, 7, 7 };
                 for (var j = 0; j < 9; j++)
                 {
@@ -689,7 +676,7 @@ namespace SoulsMemory
                     }
                 }
 
-                if (IsStatsMatch[i] && PlayersSl[i] != StatsSumm) // Оп, фактический больше нарисованного 
+                if (IsStatsMatch[i] && PlayersSl[i] != StatsSumm)
                     IsStatsMatch[i] = false;
             }
 
@@ -775,7 +762,6 @@ namespace SoulsMemory
         public static void SetLastBonfire(int BonfireID)
         {
             var Adress = IntPtr.Add((IntPtr)Memory.ReadInt64(BaseC()), 0xACC);
-
             Memory.WriteInt32(Adress, BonfireID);
         }
 

@@ -61,15 +61,6 @@ namespace MainApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        public static System.IO.UnmanagedMemoryStream Alert {
-            get {
-                return ResourceManager.GetStream("Alert", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap bg {
@@ -113,6 +104,16 @@ namespace MainApp.Properties {
         public static string bonfires {
             get {
                 return ResourceManager.GetString("bonfires", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] defconf {
+            get {
+                object obj = ResourceManager.GetObject("defconf", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         

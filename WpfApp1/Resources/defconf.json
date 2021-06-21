@@ -1,0 +1,158 @@
+{
+	"UseHotkeys": true,
+	"AllowUseEverywhere": true,
+	"Hotkeys": [
+		{
+			"Tag": 1,
+			"hotkey": {
+				"Key": 90,
+				"Modifier": 2,
+				"Description": "CTRL + F1"
+			}
+		},
+		{
+			"Tag": 2,
+			"hotkey": {
+				"Key": 91,
+				"Modifier": 2,
+				"Description": "CTRL + F2"
+			}
+		},
+		{
+			"Tag": 3,
+			"hotkey": {
+				"Key": 92,
+				"Modifier": 2,
+				"Description": "CTRL + F3"
+			}
+		},
+		{
+			"Tag": 4,
+			"hotkey": {
+				"Key": 93,
+				"Modifier": 2,
+				"Description": "CTRL + F4"
+			}
+		},
+		{
+			"Tag": 5,
+			"hotkey": {
+				"Key": 94,
+				"Modifier": 2,
+				"Description": "CTRL + F5"
+			}
+		},
+		{
+			"Tag": 6,
+			"hotkey": {
+				"Key": 90,
+				"Modifier": 6,
+				"Description": "CTRL + SHIFT + F1"
+			}
+		},
+		{
+			"Tag": 7,
+			"hotkey": {
+				"Key": 91,
+				"Modifier": 6,
+				"Description": "CTRL + SHIFT + F2"
+			}
+		},
+		{
+			"Tag": 8,
+			"hotkey": {
+				"Key": 92,
+				"Modifier": 6,
+				"Description": "CTRL + SHIFT + F3"
+			}
+		},
+		{
+			"Tag": 9,
+			"hotkey": {
+				"Key": 93,
+				"Modifier": 6,
+				"Description": "CTRL + SHIFT + F4"
+			}
+		},
+		{
+			"Tag": 10,
+			"hotkey": {
+				"Key": 94,
+				"Modifier": 6,
+				"Description": "CTRL + SHIFT + F5"
+			}
+		},
+		{
+			"Tag": 11,
+			"hotkey": {
+				"Key": 95,
+				"Modifier": 2,
+				"Description": "CTRL + F6"
+			}
+		},
+		{
+			"Tag": 21,
+			"hotkey": {
+				"Key": 39,
+				"Modifier": 2,
+				"Description": "CTRL + 5"
+			}
+		},
+		{
+			"Tag": 23,
+			"hotkey": {
+				"Key": 35,
+				"Modifier": 2,
+				"Description": "CTRL + 1"
+			}
+		},
+		{
+			"Tag": 24,
+			"hotkey": {
+				"Key": 36,
+				"Modifier": 2,
+				"Description": "CTRL + 2"
+			}
+		},
+		{
+			"Tag": 25,
+			"hotkey": {
+				"Key": 37,
+				"Modifier": 2,
+				"Description": "CTRL + 3"
+			}
+		},
+		{
+			"Tag": 30,
+			"hotkey": {
+				"Key": 38,
+				"Modifier": 2,
+				"Description": "CTRL + 4"
+			}
+		},
+		{
+			"Tag": 31,
+			"hotkey": {
+				"Key": 96,
+				"Modifier": 2,
+				"Description": "CTRL + F7"
+			}
+		},
+		{
+			"Tag": 22,
+			"hotkey": {
+				"Key": 40,
+				"Modifier": 2,
+				"Description": "CTRL + 6"
+			}
+		},
+		{
+			"Tag": 17,
+			"hotkey": {
+				"Key": 97,
+				"Modifier": 2,
+				"Description": "CTRL + F8"
+			}
+		}
+	]
+}

@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace MainApp.Crutches
 {
-    public partial class Bonfires
+    public partial class Bonfire
     {
         public string bonfireName { get; set; }
         public string bonfireID { get; set; }
@@ -15,9 +15,9 @@ namespace MainApp.Crutches
 
     public class BonfiresItemList
     {
-        public static List<Bonfires> LoadBonfireList()
+        public static List<Bonfire> LoadBonfireList()
         {
-            List<Bonfires> lst = new List<Bonfires>();
+            List<Bonfire> lst = new List<Bonfire>();
 
             try
             {
@@ -27,7 +27,7 @@ namespace MainApp.Crutches
 
                 foreach (string _bonfire in bonfires_list)
                 {
-                    Bonfires obj = new Bonfires();
+                    Bonfire obj = new Bonfire();
                     string[] info = _bonfire.Split(':');
 
                     obj.bonfireName = info[0].ToString();

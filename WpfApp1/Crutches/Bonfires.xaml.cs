@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MainApp.Crutches
 {
@@ -45,11 +34,39 @@ namespace MainApp.Crutches
             return global_value;
         }
 
+        public void SetValue(int value)
+        {
+            try
+            {
+                var i = GetItemFromId(value);
+                if (i != null) this.cmbBonfireList.SelectedItem = i;
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex);
+            }
+        }
+
+        public Bonfire GetItemFromId(int value)
+        {
+            foreach (Bonfire item in cmbBonfireList.ItemsSource)
+                if (item.bonfireID == value.ToString())
+                    return item;
+
+            return null;
+        }
+
         private void cmbBonfireList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
-                global_value = Int32.Parse(this.cmbBonfireList.SelectedValue.ToString());
+                if (this.cmbBonfireList.SelectedValue.ToString() != null)
+                {
+                    var s = Int32.Parse(this.cmbBonfireList.SelectedValue.ToString());
+                    global_value = s;
+                    SoulsMemory.JunkCode.SetLastBonfire(global_value);
+                }
+
             }
             catch (Exception ex)
             {
