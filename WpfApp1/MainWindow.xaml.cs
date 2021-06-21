@@ -399,7 +399,6 @@ namespace MainApp
             JunkCode.WriteParam(0x4A8, 0x1BA70, 0x128, JunkCode.ValueType.Bytes4, 9000);
             WatchDogOccurance = (int) JunkCode.SaveParam(0x4A8, 0xAC610, 0x128, "4Byte");
             JunkCode.WriteParam(0x4A8, 0xAC610, 0x128, JunkCode.ValueType.Bytes4, 9010);
-            Console.WriteLine("Covs Trigger CHECKED");
         }
 
         private void CovsTrigger_Unchecked(object sender, RoutedEventArgs e)
@@ -407,7 +406,6 @@ namespace MainApp
             TriggerCovenants = false;
             JunkCode.WriteParam(0x4A8, 0x1BA70, 0x128, JunkCode.ValueType.Bytes4, IdleOccurance);
             JunkCode.WriteParam(0x4A8, 0x1BA70, 0x128, JunkCode.ValueType.Bytes4, WatchDogOccurance);
-            Console.WriteLine("Covs Trigger UNCHECKED");
         }
 
         private void button_Anim_start(object sender, MouseButtonEventArgs e)

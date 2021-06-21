@@ -50,7 +50,15 @@ namespace MainApp.Crutches
             if (e.Modifiers.HasFlag(ModifierKeys.Control)) text_ += "CTRL + ";
             if (e.Modifiers.HasFlag(ModifierKeys.Alt)) text_ += "ALT + ";
             if (e.Modifiers.HasFlag(ModifierKeys.Shift)) text_ += "SHIFT + ";
-            text_ += e.KeyPressed.ToString();
+            string keyStr = e.KeyPressed.ToString();
+            int keyInt = (int)e.KeyPressed;
+            if (e.KeyPressed >= Key.D0 && e.KeyPressed <= Key.D9)
+                keyStr = char.ToString((char)(e.KeyPressed - Key.D0 + '0'));
+            else if (e.KeyPressed >= Key.A && e.KeyPressed <= Key.Z)
+                keyStr = char.ToString((char)(e.KeyPressed - Key.A + 'A'));
+            else if ((keyInt >= 84 && keyInt <= 89) || keyInt >= 140)
+                keyStr = Toolz.KeyCodeToUnicode(e.KeyPressed);
+            text_ += keyStr;
 
             return text_.ToLowerInvariant();
         }
