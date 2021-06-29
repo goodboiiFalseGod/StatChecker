@@ -89,7 +89,7 @@ namespace MainApp
         }
         void _listener_OnKeyPressed(object sender, KeyPressedArgs e)
         {
-            if (!Settings_window.IsClosed) Settings_window.LastKeyPressed = e;
+            if (Settings_window != null && !Settings_window.IsClosed) Settings_window.LastKeyPressed = e;
             this.HotkeyHandler(Toolz.GetVirtualKeyCode(e.KeyPressed, e.Modifiers));
         }
         private void KillPlayer(int PlayerNo)
