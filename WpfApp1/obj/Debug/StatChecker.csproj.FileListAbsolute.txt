@@ -31,3 +31,20 @@ F:\StatCheker\WpfApp1\WpfApp1\obj\Debug\Stat Checker by False God.g.resources
 F:\StatCheker\WpfApp1\WpfApp1\obj\Debug\MainApp.Properties.Resources.resources
 F:\StatCheker\WpfApp1\WpfApp1\obj\Debug\StatChecker.csproj.GenerateResource.cache
 F:\StatCheker\WpfApp1\WpfApp1\obj\Debug\StatChecker.csproj.CoreCompileInputs.cache
+C:\Users\ilusha\Source\Repos\ilusha\StatChecker\WpfApp1\obj\Debug\StatChecker.csprojAssemblyReference.cache
+C:\Users\ilusha\Source\Repos\ilusha\StatChecker\WpfApp1\obj\Debug\Crutches\Bonfires.g.cs
+C:\Users\ilusha\Source\Repos\ilusha\StatChecker\WpfApp1\obj\Debug\MainWindow.g.cs
+C:\Users\ilusha\Source\Repos\ilusha\StatChecker\WpfApp1\obj\Debug\App.g.cs
+C:\Users\ilusha\Source\Repos\ilusha\StatChecker\WpfApp1\obj\Debug\Bourne Again Stat Checker_MarkupCompile.cache
+C:\Users\ilusha\Source\Repos\ilusha\StatChecker\WpfApp1\obj\Debug\Bourne Again Stat Checker_MarkupCompile.lref
+C:\Users\ilusha\Source\Repos\ilusha\StatChecker\WpfApp1\bin\Debug\Bourne Again Stat Checker.exe.config
+C:\Users\ilusha\Source\Repos\ilusha\StatChecker\WpfApp1\bin\Debug\Bourne Again Stat Checker.exe
+C:\Users\ilusha\Source\Repos\ilusha\StatChecker\WpfApp1\bin\Debug\Bourne Again Stat Checker.pdb
+C:\Users\ilusha\Source\Repos\ilusha\StatChecker\WpfApp1\obj\Debug\Crutches\Bonfires.baml
+C:\Users\ilusha\Source\Repos\ilusha\StatChecker\WpfApp1\obj\Debug\MainWindow.baml
+C:\Users\ilusha\Source\Repos\ilusha\StatChecker\WpfApp1\obj\Debug\Bourne Again Stat Checker.g.resources
+C:\Users\ilusha\Source\Repos\ilusha\StatChecker\WpfApp1\obj\Debug\MainApp.Properties.Resources.resources
+C:\Users\ilusha\Source\Repos\ilusha\StatChecker\WpfApp1\obj\Debug\StatChecker.csproj.GenerateResource.cache
+C:\Users\ilusha\Source\Repos\ilusha\StatChecker\WpfApp1\obj\Debug\StatChecker.csproj.CoreCompileInputs.cache
+C:\Users\ilusha\Source\Repos\ilusha\StatChecker\WpfApp1\obj\Debug\Bourne Again Stat Checker.exe
+C:\Users\ilusha\Source\Repos\ilusha\StatChecker\WpfApp1\obj\Debug\Bourne Again Stat Checker.pdb

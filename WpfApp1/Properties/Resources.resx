@@ -118,7 +118,55 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Alert" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Sound_18603.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pics\bg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blackcrystal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pics\buttons\blackcrystal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bonfires" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bonfires.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="defconf" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\defconf.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ember" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pics\buttons\ember.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fingers" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pics\buttons\fingers.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OptimusPrinceps" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\OptimusPrinceps.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="redeye" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pics\buttons\redeye.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="redsoapstone" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pics\buttons\redsoapstone.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="seed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pics\buttons\seed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tearsofdenial" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pics\buttons\tearsofdenial.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tile_covs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pics\tile_covs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tile_host" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pics\tile-host.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tile_marauder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pics\tile_marauder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tile_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pics\tile_red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tile_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pics\tile_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="whitesoapstone" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pics\buttons\whitesoapstone.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

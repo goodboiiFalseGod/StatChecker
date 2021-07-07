@@ -1,0 +1,190 @@
+{
+	"UseHotkeys": true,
+	"AllowUseEverywhere": false,
+	"hotkeys": [
+		{
+			"Tag": 19,
+			"hotkey": {
+				"Key": 46,
+				"Modifier": 4,
+				"Description": "shift + c"
+			}
+		},
+		{
+			"Tag": 17,
+			"hotkey": {
+				"Key": 51,
+				"Modifier": 4,
+				"Description": "shift + h"
+			}
+		},
+		{
+			"Tag": 13,
+			"hotkey": {
+				"Key": 51,
+				"Modifier": 1,
+				"Description": "alt + h"
+			}
+		},
+		{
+			"Tag": 12,
+			"hotkey": {
+				"Key": 51,
+				"Modifier": 0,
+				"Description": "h"
+			}
+		},
+		{
+			"Tag": 11,
+			"hotkey": {
+				"Key": 54,
+				"Modifier": 1,
+				"Description": "alt + k"
+			}
+		},
+		{
+			"Tag": 10,
+			"hotkey": {
+				"Key": 39,
+				"Modifier": 5,
+				"Description": "alt + shift + 5"
+			}
+		},
+		{
+			"Tag": 7,
+			"hotkey": {
+				"Key": 36,
+				"Modifier": 5,
+				"Description": "alt + shift + 2"
+			}
+		},
+		{
+			"Tag": 5,
+			"hotkey": {
+				"Key": 39,
+				"Modifier": 4,
+				"Description": "shift + 5"
+			}
+		},
+		{
+			"Tag": 4,
+			"hotkey": {
+				"Key": 38,
+				"Modifier": 4,
+				"Description": "shift + 4"
+			}
+		},
+		{
+			"Tag": 3,
+			"hotkey": {
+				"Key": 37,
+				"Modifier": 4,
+				"Description": "shift + 3"
+			}
+		},
+		{
+			"Tag": 2,
+			"hotkey": {
+				"Key": 36,
+				"Modifier": 4,
+				"Description": "shift + 2"
+			}
+		},
+		{
+			"Tag": 1,
+			"hotkey": {
+				"Key": 35,
+				"Modifier": 4,
+				"Description": "shift + 1"
+			}
+		},
+		{
+			"Tag": 6,
+			"hotkey": {
+				"Key": 35,
+				"Modifier": 5,
+				"Description": "alt + shift + 1"
+			}
+		},
+		{
+			"Tag": 9,
+			"hotkey": {
+				"Key": 38,
+				"Modifier": 5,
+				"Description": "alt + shift + 4"
+			}
+		},
+		{
+			"Tag": 8,
+			"hotkey": {
+				"Key": 37,
+				"Modifier": 5,
+				"Description": "alt + shift + 3"
+			}
+		},
+		{
+			"Tag": 21,
+			"hotkey": {
+				"Key": 142,
+				"Modifier": 1,
+				"Description": "alt + ,"
+			}
+		},
+		{
+			"Tag": 22,
+			"hotkey": {
+				"Key": 144,
+				"Modifier": 1,
+				"Description": "alt + ."
+			}
+		},
+		{
+			"Tag": 23,
+			"hotkey": {
+				"Key": 39,
+				"Modifier": 0,
+				"Description": "5"
+			}
+		},
+		{
+			"Tag": 24,
+			"hotkey": {
+				"Key": 40,
+				"Modifier": 0,
+				"Description": "6"
+			}
+		},
+		{
+			"Tag": 25,
+			"hotkey": {
+				"Key": 41,
+				"Modifier": 0,
+				"Description": "7"
+			}
+		},
+		{
+			"Tag": 29,
+			"hotkey": {
+				"Key": 42,
+				"Modifier": 0,
+				"Description": "8"
+			}
+		},
+		{
+			"Tag": 30,
+			"hotkey": {
+				"Key": 43,
+				"Modifier": 0,
+				"Description": "9"
+			}
+		},
+		{
+			"Tag": 31,
+			"hotkey": {
+				"Key": 151,
+				"Modifier": 0,
+				"Description": "]"
+			}
+		}
+	]
+}
