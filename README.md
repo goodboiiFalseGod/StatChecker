@@ -1,7 +1,7 @@
 
 
 # Stat Checker
-
+[![Downloads](https://img.shields.io/github/downloads/goodboiiFalseGod/StatChecker/v1.3/total)]()
 ### ﻿﻿This tool for Dark Souls III allows you to monitor players in your game session, gathers some statistics and have some handy features.
 
 
