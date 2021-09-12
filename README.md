@@ -11,7 +11,7 @@
 Main function of this soft is tracking players stats, each player is shown in 1 of 5 columns. Columns changes their color, depends on the player team.
 Here comes the description of the buttons:
 
-- `Kill` button - this button kills people. (Since the program detects only deviations of stats and levels, and it is not yet known way how to programmatically check whether the player is cheating or not, kill button allows the user to kill any player. This means that the entire responsibility for identifying and punishing unfair players lies with the user.)
+- `Kill` button - this button kills people, if they were marked as cheaters.
 - `Kick` button - this button can kick any player from session but only if you are host. 
 - `KillAllMobs` button - this button kill all mobs in the location. If there are any hostile phantoms in your world, they'll be killed too, so use it careful.
 - `Homeward to Bonfire` button - this button teleports you to the bonfire you last rested at or picked in a drop-down menu above.
