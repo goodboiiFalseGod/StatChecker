@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
+using System.Windows.Documents;
+using System.Windows.Navigation;
 
 namespace MainApp
 {
@@ -23,6 +25,7 @@ namespace MainApp
         private LowLevelKeyboardListener _listener;
         public Dictionary<int, Hotkey> hotkeys;
         TextBlock[] PanelNames;
+        Hyperlink[] PlayerLinks;
         TextBlock[] PanelLevels;
         TextBlock[] PanelStats;
         TextBlock[] PanelStatsCheck;
@@ -56,6 +59,7 @@ namespace MainApp
             this.Loaded += Bonfires_Loaded;
             gameName = "DarkSoulsIII";
             PanelNames = new TextBlock[] {p1Name, p2Name, p3Name, p4Name, p5Name};
+            PlayerLinks = new Hyperlink[] { p1Link, p2Link, p3Link, p4Link, p5Link };
             PanelLevels = new TextBlock[] {p1SoulLvL, p2SoulLvL, p3SoulLvL, p4SoulLvL, p5SoulLvL};
             PanelStats = new TextBlock[] {p1Stats, p2Stats, p3Stats, p4Stats, p5Stats};
             PanelStatsCheck = new TextBlock[] {p1Statscheck, p2Statscheck, p3Statscheck, p4Statscheck, p5Statscheck};
@@ -102,7 +106,8 @@ namespace MainApp
 
         private void KillButton_Click(object sender, RoutedEventArgs e)
         {
-            KillPlayer(Int32.Parse((sender as Button).Tag.ToString()) -1);
+            var i = Int32.Parse((sender as Button).Tag.ToString()) - 1;
+            if (!statscheck[i]) KillPlayer(i);
         }
 
         private void KickButton_Click(object sender, RoutedEventArgs e)
@@ -186,7 +191,6 @@ namespace MainApp
                         StreamWriter Textbaseconnect = new StreamWriter(Path, true);
 
                         name[i] = names[i];
-
                         if (PanelNames[i].Text == "Empty")
                         {
                             iswasempty[i] = true;
@@ -250,7 +254,7 @@ namespace MainApp
                                 }
 
                                 string SteamProfile = "http://steamcommunity.com/profiles/" + SteamID.ToString();
-
+                                if (SteamID != 0) PlayerLinks[i].NavigateUri = new Uri(SteamProfile);
                                 if (iswasempty[i])
                                 {
                                     Textbaseconnect.WriteLine(System.DateTime.Now + "\t" + "Player " + (i + 1) + " " +
@@ -278,7 +282,7 @@ namespace MainApp
                             }
 
                             string SteamProfile = "http://steamcommunity.com/profiles/" + SteamID.ToString();
-
+                            if (SteamID != 0) PlayerLinks[i].NavigateUri = new Uri(SteamProfile);
                             if (!isplayerstruct[i])
                             {
                                 PanelStatsCheck[i].Text = "incorrect";
@@ -302,7 +306,7 @@ namespace MainApp
                         switch (teamtypes[i])
                         {
                             case 0:
-                                StackPanels[i].Opacity = 0;
+                                StackPanels[i].Opacity = 1;
                                 break;
                             case 1:
                                 imageTiles[i].ImageSource = (ImageSource)Resources["tile_host"];
@@ -345,6 +349,13 @@ namespace MainApp
             }
         }
 
+        private void Hyperlink_Click(object sender, RequestNavigateEventArgs e)
+        {
+            if (e.Uri.OriginalString.Length < 1 || !e.Uri.IsAbsoluteUri) return;
+            Console.WriteLine(e.Uri.ToString());
+            Process.Start(new ProcessStartInfo("steam://openurl/" + e.Uri.AbsoluteUri));
+            e.Handled = true;
+        }
 
         private void KillAllMobs_Click(object sender, RoutedEventArgs e)
         {
@@ -635,6 +646,7 @@ namespace MainApp
         private void LowPolyCheckBox_Checked(object sender, RoutedEventArgs e)
         {
             LowC = true;
+            Console.WriteLine("LowC done.");
             HIT_INS.WORLD_HIT_MAN.EnableLowPolyColDisplay(true);
         }
 
