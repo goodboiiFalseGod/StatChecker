@@ -4,6 +4,8 @@
 ## Doesn't work at the moment, definitely won't work like before
 ### ﻿﻿This tool for Dark Souls III allows you to monitor players in your game session, gathers some statistics and have some handy features.
 
+Nexus mods page: https://www.nexusmods.com/darksouls3/mods/444
+
 
 
 ﻿When program starts first time, it creates 2 files. *PlayerBase.txt* and *userconf.json*. *PlayerBase* just stores most of info about players you played recently. *userconf* stores program preferences.
